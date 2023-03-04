@@ -58,51 +58,45 @@ export default defineComponent({
         
         <ul class="menu-links">
           <li class="nav-link">
-            <a href="#">
+            <RouterLink to="/" class="navbar-item">
               <i class='bx bx-home-alt icon' ></i>
-              <span class="text nav-text">
-                <RouterLink to="/" class="navbar-item">Home</RouterLink>
-            </span>
-            </a>
+              Home
+            </RouterLink>
           </li>
 
           <li class="nav-link">
-            <a href="#">
+            <RouterLink to="/about" class="navbar-item">
               <i class='bx bx-bar-chart-alt-2 icon' ></i>
-              <span class="text nav-text">
-                <RouterLink to="/about" class="navbar-item">About</RouterLink>
-              </span>
-            </a>
+              About
+            </RouterLink>
           </li>
 
           <li class="nav-link">
-            <a href="#">
+            <RouterLink to="/notifications" class="navbar-item">
               <i class='bx bx-bell icon'></i>
-              <span class="text nav-text">Notifications</span>
-            </a>
+              Notifications
+            </RouterLink>
           </li>
 
           <li class="nav-link">
-            <a href="#">
+            <RouterLink to="/products" class="navbar-item">
               <i class='bx bx-pie-chart-alt icon' ></i>
-              <span class="text nav-text">
-                <RouterLink to="/products" class="navbar-item">Products</RouterLink>
-              </span>
-            </a>
+              Products
+            </RouterLink>
           </li>
 
           <li class="nav-link">
-            <a href="#">
+            <RouterLink to="/likes" class="navbar-item">
               <i class='bx bx-heart icon' ></i>
-              <span class="text nav-text">Likes</span>
-            </a>
+              Likes
+            </RouterLink>
           </li>
 
           <li class="nav-link">
-            <a href="#">
+            <RouterLink to="/workouts" class="navbar-item">
               <i class='bx bx-wallet icon' ></i>
-              <span class="text nav-text">Workouts</span>
-            </a>
+              Workouts
+            </RouterLink>
           </li>
 
         </ul>
@@ -110,12 +104,10 @@ export default defineComponent({
 
       <div class="bottom-content">
         <li class="">
-          <a href="#">
+          <RouterLink to="/logout" class="navbar-item">
             <i class='bx bx-log-out icon' ></i>
-            <span class="text nav-text">
-                <LoginBadge> Logout</LoginBadge>
-            </span>
-          </a>
+            Logout
+          </RouterLink>
         </li>
 
         <li class="mode">
