@@ -1,34 +1,27 @@
-<script>
-import { computed, defineComponent } from 'vue';
-import { RouterLink } from 'vue-router';
-import LoginBadge from './LoginBadge.vue';
+<script setup lang="ts">
+  import { computed, ref } from 'vue';
+  import { RouterLink } from 'vue-router';
+  import LoginBadge from './LoginBadge.vue';
 
-export default defineComponent({
-  data() {
-    return {
-      isClosed: false,
-      isDarkModeOn: false,
-    };
-  },
-  computed: {
-    sidebarClass() {
-      return this.isClosed ? 'close' : '';
-    },
-  },
-  methods: {
-    toggleSidebar() {
-      this.isClosed = !this.isClosed;
-    },
-    toggleDarkModeOn() {
-      this.isDarkModeOn = !this.isDarkModeOn;
-      if (this.isDarkModeOn) {
-        document.body.classList.add('dark');
-      } else {
-        document.body.classList.remove('dark');
-      }
-    },
-  },
-});
+  const isClosed = ref(false);
+  const isDarkModeOn = ref(false);
+
+  const sidebarClass = computed(() => {
+    return isClosed.value ? 'close' : '';
+  });
+
+  function toggleSidebar() {
+    isClosed.value = !isClosed.value;
+  }
+
+  function toggleDarkModeOn() {
+    isDarkModeOn.value = !isDarkModeOn.value;
+    if (isDarkModeOn.value) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }
 
 </script>
 
@@ -131,6 +124,7 @@ export default defineComponent({
 <style scoped>
    body.dark {
     background-color: #282c34;
+    
     color: #fff;
   }
   
