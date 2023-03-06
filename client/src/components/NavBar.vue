@@ -15,11 +15,11 @@ import LoginBadge from './LoginBadge.vue';
     <nav class="navbar is-primary">
         <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
+          <!-- <a class="navbar-item" href="https://bulma.io"> -->
             
             <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="22" height="22" /> -->
             
-          </a>
+          <!-- </a> -->
           <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="toggleMenu" >
             <span></span>
             <span></span>

@@ -99,6 +99,7 @@
         <li class="">
           <RouterLink to="/logout" class="navbar-item">
             <i class='bx bx-log-out icon' ></i>
+            Logout
             <!-- <LoginBadge /> -->
           </RouterLink>
         </li>
