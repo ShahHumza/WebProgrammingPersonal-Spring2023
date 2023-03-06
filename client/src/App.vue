@@ -8,8 +8,9 @@ import ReactiveNavBar from './components/ReactiveNavBar.vue';
 
 <template>
     
-    <!-- <NavBar /> -->
+    <NavBar />
     <ReactiveNavBar />
+    
     
 
     <div class="container">

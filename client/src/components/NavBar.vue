@@ -17,7 +17,7 @@ import LoginBadge from './LoginBadge.vue';
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
             
-            <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="22" height="22" />
+            <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="22" height="22" /> -->
             
           </a>
           <div class="navbar-burger" :class="{ 'is-active': isMenuActive }" @click="toggleMenu" >
@@ -28,7 +28,7 @@ import LoginBadge from './LoginBadge.vue';
         </div>
       
         <div class="navbar-menu" :class="{ 'is-active': isMenuActive }">
-          <div class="navbar-start">
+          <!-- <div class="navbar-start">
 
             <RouterLink to="/" class="navbar-item">Home</RouterLink>
             <RouterLink to="/about" class="navbar-item">About</RouterLink>
@@ -64,7 +64,7 @@ import LoginBadge from './LoginBadge.vue';
                 </a>
               </div>
             </div>
-          </div>
+          </div> -->
       
           <div class="navbar-end">
 

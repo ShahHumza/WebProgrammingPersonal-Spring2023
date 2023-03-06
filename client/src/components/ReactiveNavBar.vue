@@ -26,7 +26,7 @@
 </script>
 
 <template>
-    <nav class="sidebar" :class="{ 'close': isClosed, 'dark-mode': isDarkModeOn}">
+    <nav class="sidebar" :class="{'dark-mode': isDarkModeOn}">
     <header>
       <div class="image-text">
         <span class="image">
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <i class='bx bx-chevron-right toggle' @click="toggleSidebar"></i>
+      <!-- <i class='bx bx-chevron-right toggle' @click="toggleSidebar"></i> -->
     </header>
 
     <div class="menu-bar">
@@ -99,7 +99,7 @@
         <li class="">
           <RouterLink to="/logout" class="navbar-item">
             <i class='bx bx-log-out icon' ></i>
-            Logout
+            <!-- <LoginBadge /> -->
           </RouterLink>
         </li>
 
