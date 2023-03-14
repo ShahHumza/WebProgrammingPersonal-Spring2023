@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { RouterLink } from 'vue-router';
 </script>
 
@@ -7,7 +6,7 @@ import { RouterLink } from 'vue-router';
 
 <template>
     <!-- MAIN -->
-<main>
+<main class = "dash">
   <div class="head-title">
     <div class="left">
       <h1>Dashboard</h1>
@@ -141,5 +140,21 @@ import { RouterLink } from 'vue-router';
 
 
 <style scoped>
+
+@media (min-width: 1024px) {
+  .dash {
+    min-height: 100vh;
+    display: flex;
+    text-align: right;
+
+    /* This alligns it */
+    position: relative;
+    width: calc(100% - 280px);
+    left: 280px;
+    transition: .3s ease;
+  }
+}
+
+
 
 </style>
