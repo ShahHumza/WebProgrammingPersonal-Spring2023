@@ -26,7 +26,9 @@
 </script>
 
 <template>
-    <nav class="sidebar" :class="{'dark-mode': isDarkModeOn}">
+  
+  
+    <nav class="sidebar" :class="{'close': isClosed, 'dark-mode': isDarkModeOn}">
     <header>
       <div class="image-text">
         <span class="image">
@@ -51,7 +53,7 @@
         
         <ul class="menu-links">
           <li class="nav-link">
-            <RouterLink to="/" class="navbar-item">
+            <RouterLink to="/dashboard" class="navbar-item">
               <i class='bx bx-home-alt icon' ></i>
               Home
             </RouterLink>
@@ -91,6 +93,7 @@
               Workouts
             </RouterLink>
           </li>
+          
 
         </ul>
       </div>
@@ -100,7 +103,6 @@
           <RouterLink to="/logout" class="navbar-item">
             <i class='bx bx-log-out icon' ></i>
             Logout
-            <!-- <LoginBadge /> -->
           </RouterLink>
         </li>
 

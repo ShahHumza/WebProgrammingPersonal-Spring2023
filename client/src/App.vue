@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import Dashboard2 from './components/Dashboard2.vue';
+
 import NavBar from './components/NavBar.vue';
 import ReactiveNavBar from './components/ReactiveNavBar.vue';
 
@@ -8,8 +10,10 @@ import ReactiveNavBar from './components/ReactiveNavBar.vue';
 
 <template>
     
-    <NavBar />
-    <ReactiveNavBar />
+    <!-- <NavBar /> -->
+    <!-- <ReactiveNavBar /> -->
+
+    <Dashboard2 />
     
     
 
