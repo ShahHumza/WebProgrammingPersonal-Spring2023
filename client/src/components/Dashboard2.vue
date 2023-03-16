@@ -54,7 +54,7 @@ import { useSession } from '@/model/session';
       </RouterLink>
     </li>
     <li>
-      <RouterLink to="/products">
+      <RouterLink to="/friends">
         <i class='bx bxs-shopping-bag-alt'></i>
         <span class="text">Friends</span>
       </RouterLink>
@@ -66,7 +66,7 @@ import { useSession } from '@/model/session';
       </RouterLink>
     </li>
     <li>
-      <RouterLink to="/message">
+      <RouterLink to="/products">
         <i class='bx bxs-message-dots'></i>
         <span class="text">Messages</span>
       </RouterLink>
