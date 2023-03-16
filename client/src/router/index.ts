@@ -5,6 +5,7 @@ import ProductsVue from '@/views/Products.vue'
 import LoginVue from '@/views/Login.vue'
 import { useSession } from '@/model/session'
 import Dashboard2View from '@/views/Dashboard2View.vue';
+import AdminView from '@/views/AdminView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,8 +14,10 @@ const router = createRouter({
     { path: '/products', name: 'products', component: ProductsVue, beforeEnter: secureRoute },
     { path: '/login', name: 'login', component: LoginVue },
     { path: '/dashboard', name: 'dashboard', component: Dashboard2View },
-    
-    
+    { path: '/admin', name: 'admin', component: AdminView, beforeEnter: secureAdmin},
+
+
+
     {
       path: '/about',
       name: 'about',
@@ -26,7 +29,18 @@ const router = createRouter({
   ]
 })
 
+
+
 export default router
+
+function secureAdmin (to : RouteLocationNormalized, from : RouteLocationNormalized, next : NavigationGuardNext ) {
+  const session = useSession();
+  if (session.user?.role == "admin") {
+      next()
+  } else { 
+      next('/login')
+  }
+}
 
 function secureRoute (to : RouteLocationNormalized, from : RouteLocationNormalized, next : NavigationGuardNext ) {
     const session = useSession();

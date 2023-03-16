@@ -2,6 +2,8 @@
 import { ref, watchEffect } from 'vue';
 import LoginBadge from './LoginBadge.vue';
 import { RouterLink } from 'vue-router';
+import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
+import { useSession } from '@/model/session';
 
 
     // Create a reactive variable for the current mode
@@ -31,6 +33,7 @@ import { RouterLink } from 'vue-router';
     if (savedMode === 'dark') {
     isDarkMode.value = true;
     }
+
 </script>
 
 
@@ -45,7 +48,7 @@ import { RouterLink } from 'vue-router';
   </RouterLink>
   <ul class="side-menu top">
     <li>
-      <RouterLink to="/dashboard" class="active">
+      <RouterLink to="/" class="active">
         <i class='bx bxs-dashboard'></i>
         <span class="text">Dashboard</span>
       </RouterLink>
@@ -69,9 +72,9 @@ import { RouterLink } from 'vue-router';
       </RouterLink>
     </li>
     <li>
-      <RouterLink to="/team">
+      <RouterLink to="/admin">
         <i class='bx bxs-group'></i>
-        <span class="text">Team</span>
+        <span class="text">Admin</span>
       </RouterLink>
     </li>
   </ul>
@@ -95,29 +98,31 @@ import { RouterLink } from 'vue-router';
 <!-- CONTENT -->
 <section id="content">
   <!-- NAVBAR -->
+  
   <nav>
-    <i class='bx bx-menu'></i>
-    <RouterLink to="/categories" class="nav-link">Categories</RouterLink>
-    <form action="#">
-      <div class="form-input">
-        <input type="search" placeholder="Search...">
-        <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-      </div>
-    </form>
-    <RouterLink to="/" class="notification">
-      <i> <LoginBadge /></i>
-      <span class="num">8</span>
-    </RouterLink>
-    <input type="checkbox" id="switch-mode" hidden>
-    <label for="switch-mode" class="switch-mode"></label>
-    <RouterLink to="/notification" class="notification">
-      <i class='bx bxs-bell'></i>
-      <span class="num">8</span>
-    </RouterLink>
-    <RouterLink to="/profile" class="profile">
-      <img src="img/people.png">
-    </RouterLink>
-  </nav>
+  <i class='bx bx-menu'></i>
+  <a class="nav-link">Categories</a>
+  <form action="#">
+    <div class="form-input">
+      <input type="search" placeholder="Search...">
+      <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+    </div>
+  </form>
+  <a class="notification">
+    <i> <LoginBadge /></i>
+    <span class="num">8</span>
+  </a>
+  <input type="checkbox" id="switch-mode" hidden>
+  <label for="switch-mode" class="switch-mode"></label>
+  <a class="notification">
+    <i class='bx bxs-bell'></i>
+    <span class="num">8</span>
+  </a>
+  <a class="profile">
+    <img src="img/people.png">
+  </a>
+</nav>
+
   <!-- NAVBAR -->
   
 
