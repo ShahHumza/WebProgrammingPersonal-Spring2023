@@ -79,19 +79,19 @@ import { useSession } from '@/model/session';
     </li>
   </ul>
   <ul class="side-menu">
-    <li>
-      <RouterLink to="/settings">
-        <i class='bx bxs-cog'></i>
-        <span class="text">Settings</span>
-      </RouterLink>
-    </li>
-    <li>
-      <RouterLink to="/logout" class="logout">
-        <i class='bx bxs-log-out-circle'></i>
-        <span class="text">Logout</span>
-      </RouterLink>
-    </li>
-  </ul>
+  <li>
+    <a>
+      <i class='bx bxs-cog'></i>
+      <span class="text">Settings</span>
+    </a>
+  </li>
+  <li>
+    <a class="logout">
+      <i class='bx bxs-log-out-circle'></i>
+      <span class="text">Logout</span>
+    </a>
+  </li>
+</ul>
 </section>
 <!-- SIDEBAR -->
 

@@ -3,6 +3,7 @@ import { useRouter } from "vue-router";
 
 const session = reactive({
   user: null as User | null,
+  workouts: [] as string[],
 })
 
 const Humza: User = {
@@ -10,18 +11,21 @@ const Humza: User = {
   role: "admin",
   friends: [],
   status: true,
+  workouts: [],
 };
 
 const Tanner: User = {
   name: "Tanner Festa",
   friends: [],
   status: false,
+  workouts: [],
 };
 
 const Tom: User = {
     name: "Thomas Coffey",
     friends: [],
     status: true,
+    workouts: [],
   };
 
 
@@ -34,6 +38,7 @@ interface User {
   role?: string;
   friends: User[];
   status: boolean;
+  workouts: string[]
 }
 
 export function useSession() {
@@ -47,6 +52,7 @@ export function login(user: string) {
       role: "admin",
       friends: [Tanner, Tom],
       status: true,
+      workouts: ["Biking up a mountain",],
     };
  
     
@@ -55,6 +61,7 @@ export function login(user: string) {
       name: "Tanner Festa",
       friends: [Humza, Tom],
       status: false,
+      workouts: ["Fighting a bear in the Adirondacks",],
     };
  
     
@@ -63,6 +70,7 @@ export function login(user: string) {
       name: "Thomas Coffey",
       friends: [Humza, Tanner],
       status: true,
+      workouts: ["Drinking Coffee",],
     };
 
 
@@ -79,5 +87,11 @@ export function useLogout() {
     session.user = null;
 
     router.push("/login");
+  }
+}
+
+export function addWorkout(workoutName: string) {
+  if (session.user !== null) {
+    session.user.workouts.push(workoutName);
   }
 }
