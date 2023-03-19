@@ -9,20 +9,16 @@ import ReactiveNavBar from './components/ReactiveNavBar.vue';
 </script>
 
 <template>
-    
     <!-- <NavBar /> -->
     <!-- <ReactiveNavBar /> -->
 
     <Dashboard2 />
-    
-    
+
+
 
     <div class="container">
         <RouterView />
     </div>
-   
 </template>
 
-<style scoped>
-    
-</style>
+<style scoped></style>
