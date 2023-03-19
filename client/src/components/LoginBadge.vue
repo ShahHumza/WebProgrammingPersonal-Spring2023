@@ -18,7 +18,7 @@ function logout2() {
     <div v-if="!session.user">
       <div class="dropdown is-hoverable">
         <div class="dropdown-trigger">
-          <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu">
+          <button class="button is-primary" aria-haspopup="true" aria-controls="dropdown-menu" style="outline: none;">
             <span class="icon">
               <i class="fas fa-user"></i>
             </span>
@@ -47,7 +47,7 @@ function logout2() {
       </a>
     </div>
     <div v-else>
-      <div class="navbar-item">
+      <div class="navbar-item" style="outline: none;">
         Welcome, {{ session.user.name }} (<a @click="logout2()">logout</a>)
       </div>
     </div>

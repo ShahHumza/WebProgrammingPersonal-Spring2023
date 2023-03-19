@@ -1,34 +1,32 @@
 <script setup lang="ts">
-  import { computed, ref } from 'vue';
-  import { RouterLink } from 'vue-router';
-  import LoginBadge from './LoginBadge.vue';
+import { computed, ref } from 'vue';
+import { RouterLink } from 'vue-router';
+import LoginBadge from './LoginBadge.vue';
 
-  const isClosed = ref(false);
-  const isDarkModeOn = ref(false);
+const isClosed = ref(false);
+const isDarkModeOn = ref(false);
 
-  const sidebarClass = computed(() => {
-    return isClosed.value ? 'close' : '';
-  });
+const sidebarClass = computed(() => {
+  return isClosed.value ? 'close' : '';
+});
 
-  function toggleSidebar() {
-    isClosed.value = !isClosed.value;
+function toggleSidebar() {
+  isClosed.value = !isClosed.value;
+}
+
+function toggleDarkModeOn() {
+  isDarkModeOn.value = !isDarkModeOn.value;
+  if (isDarkModeOn.value) {
+    document.body.classList.add('dark');
+  } else {
+    document.body.classList.remove('dark');
   }
-
-  function toggleDarkModeOn() {
-    isDarkModeOn.value = !isDarkModeOn.value;
-    if (isDarkModeOn.value) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
-  }
+}
 
 </script>
 
 <template>
-  
-  
-    <nav class="sidebar" :class="{'close': isClosed, 'dark-mode': isDarkModeOn}">
+  <nav class="sidebar" :class="{ 'close': isClosed, 'dark-mode': isDarkModeOn }">
     <header>
       <div class="image-text">
         <span class="image">
@@ -50,18 +48,18 @@
           <input type="text" placeholder="Search...">
         </li>
 
-        
+
         <ul class="menu-links">
           <li class="nav-link">
             <RouterLink to="/dashboard" class="navbar-item">
-              <i class='bx bx-home-alt icon' ></i>
+              <i class='bx bx-home-alt icon'></i>
               Home
             </RouterLink>
           </li>
 
           <li class="nav-link">
             <RouterLink to="/about" class="navbar-item">
-              <i class='bx bx-bar-chart-alt-2 icon' ></i>
+              <i class='bx bx-bar-chart-alt-2 icon'></i>
               About
             </RouterLink>
           </li>
@@ -75,25 +73,25 @@
 
           <li class="nav-link">
             <RouterLink to="/products" class="navbar-item">
-              <i class='bx bx-pie-chart-alt icon' ></i>
+              <i class='bx bx-pie-chart-alt icon'></i>
               Products
             </RouterLink>
           </li>
 
           <li class="nav-link">
             <RouterLink to="/likes" class="navbar-item">
-              <i class='bx bx-heart icon' ></i>
+              <i class='bx bx-heart icon'></i>
               Likes
             </RouterLink>
           </li>
 
           <li class="nav-link">
             <RouterLink to="/workouts" class="navbar-item">
-              <i class='bx bx-wallet icon' ></i>
+              <i class='bx bx-wallet icon'></i>
               Workouts
             </RouterLink>
           </li>
-          
+
 
         </ul>
       </div>
@@ -101,7 +99,7 @@
       <div class="bottom-content">
         <li class="">
           <RouterLink to="/logout" class="navbar-item">
-            <i class='bx bx-log-out icon' ></i>
+            <i class='bx bx-log-out icon'></i>
             Logout
           </RouterLink>
         </li>
@@ -125,11 +123,9 @@
 
 
 <style scoped>
-   body.dark {
-    background-color: #282c34;
-    
-    color: #fff;
-  }
-  
+body.dark {
+  background-color: #282c34;
 
+  color: #fff;
+}
 </style>

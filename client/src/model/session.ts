@@ -22,11 +22,11 @@ const Tanner: User = {
 };
 
 const Tom: User = {
-    name: "Thomas Coffey",
-    friends: [],
-    status: true,
-    workouts: [],
-  };
+  name: "Thomas Coffey",
+  friends: [],
+  status: true,
+  workouts: [],
+};
 
 
 interface User {
@@ -38,7 +38,11 @@ interface User {
   role?: string;
   friends: User[];
   status: boolean;
-  workouts: string[]
+  workouts: {
+    date: string,
+    duration: number,
+    name: string,
+  }[];
 }
 
 export function useSession() {
@@ -52,29 +56,47 @@ export function login(user: string) {
       role: "admin",
       friends: [Tanner, Tom],
       status: true,
-      workouts: ["Biking up a mountain",],
+      workouts: [
+        {
+          date: "2023-03-19",
+          duration: 50,
+          name: "Running",
+        },
+      ],
     };
- 
-    
+
+
   } else if (user === "Tanner Festa") {
     session.user = {
       name: "Tanner Festa",
       friends: [Humza, Tom],
       status: false,
-      workouts: ["Fighting a bear in the Adirondacks",],
+      workouts: [
+        {
+          date: "2023-03-19",
+          duration: 30,
+          name: "Benching",
+        },
+      ],
     };
- 
-    
+
+
   } else if (user === "Thomas Coffey") {
     session.user = {
       name: "Thomas Coffey",
       friends: [Humza, Tanner],
       status: true,
-      workouts: ["Drinking Coffee",],
+      workouts: [
+        {
+          date: "2023-03-19",
+          duration: 10,
+          name: "Coffee Drinking",
+        },
+      ],
     };
 
 
-} else {
+  } else {
     console.error("Invalid user selected");
   }
 }
@@ -82,16 +104,16 @@ export function login(user: string) {
 export function useLogout() {
   const router = useRouter();
 
-  return function() {
-    console.log({router});
+  return function () {
+    console.log({ router });
     session.user = null;
 
     router.push("/login");
   }
 }
 
-export function addWorkout(workoutName: string) {
+export function addWorkout(date: string, duration: number, name: string) {
   if (session.user !== null) {
-    session.user.workouts.push(workoutName);
+    session.user.workouts.push({ date, duration, name });
   }
 }

@@ -6,11 +6,11 @@
 
 
 <template>
-   <div class="admin">
+  <div class="admin">
     <h1>
       Welcome to the Admin Page
     </h1>
-    <br> 
+    <br>
     <ul class="info">
       <table class="table table-striped">
         <thead>
@@ -65,15 +65,13 @@
         </tbody>
       </table>
     </ul>
-     
+
   </div>
 </template>
 
 
 
 <style scoped>
-
-
 @media (min-width: 1024px) {
   .admin {
     min-height: 100vh;
@@ -87,10 +85,9 @@
     transition: .3s ease;
   }
 }
-.info{
+
+.info {
   margin-top: 100px;
   left: 280px;
 }
-
-
 </style>
