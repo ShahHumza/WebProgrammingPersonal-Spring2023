@@ -4,7 +4,6 @@ import HomeView from '../views/HomeView.vue'
 import ProductsVue from '@/views/Products.vue'
 import LoginVue from '@/views/Login.vue'
 import { useSession } from '@/model/session'
-import Dashboard2View from '@/views/Dashboard2View.vue';
 import AdminView from '@/views/AdminView.vue';
 import FriendsView from '@/views/FriendsView.vue';
 
@@ -14,7 +13,6 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomeView },
     { path: '/products', name: 'products', component: ProductsVue, beforeEnter: secureRoute },
     { path: '/login', name: 'login', component: LoginVue },
-    { path: '/dashboard', name: 'dashboard', component: Dashboard2View },
     { path: '/admin', name: 'admin', component: AdminView, beforeEnter: secureAdmin},
     { path: '/friends', name: 'friends', component: FriendsView },
 
