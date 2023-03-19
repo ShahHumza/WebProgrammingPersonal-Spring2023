@@ -2,6 +2,7 @@
 import { defineComponent, ref } from 'vue';
 import { useSession, addWorkout } from '@/model/session';
 
+
 export default defineComponent({
   setup() {
     const session = useSession();
@@ -19,6 +20,8 @@ export default defineComponent({
     };
   },
 });
+
+
 </script>
 
 <template>
