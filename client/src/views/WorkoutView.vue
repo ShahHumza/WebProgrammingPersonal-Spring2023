@@ -25,14 +25,14 @@ export default defineComponent({
 </script>
 
 <template>
-  <main class ="work">
+  <main class="work">
     <h1 class="title">
       <div>
-        <label>Workout Title:</label>
+        <label>Workout Name:</label>
         <input type="text" v-model="newWorkout.name">
       </div>
       <div>
-        <label>Workout Duration:</label>
+        <label>Workout Duration(minutes):</label>
         <input type="text" v-model="newWorkout.duration">
       </div>
       <div>
@@ -43,7 +43,12 @@ export default defineComponent({
       <br>
       <ul>
         <li v-for="(workout, index) in user?.workouts" :key="index">
-          {{ workout.name }} - {{ workout.duration }} - {{ workout.date }}
+          <div class="box">
+
+            {{ workout.name }} - {{ workout.duration }} - {{ workout.date }}
+
+          </div>
+
         </li>
       </ul>
     </h1>
@@ -84,7 +89,7 @@ export default defineComponent({
 }
 
 @media (min-width: 1024px) {
-  .work{
+  .work {
     min-height: 100vh;
     display: flex;
     text-align: right;
@@ -96,5 +101,4 @@ export default defineComponent({
     transition: .3s ease;
   }
 }
-
 </style>

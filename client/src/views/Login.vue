@@ -14,7 +14,6 @@
     </div>
 </template>
 
-
 <style scoped>
   @media (min-width: 512px) {
     .subtitle {
@@ -22,7 +21,7 @@
       position: absolute;
       top: 80px;
       right: 0;
-      left: 0px;
+      left: 250px;
       width: calc(100% - 280px);
       transition: .3s ease;
     }
