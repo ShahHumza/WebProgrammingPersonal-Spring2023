@@ -27,7 +27,8 @@
   
   <style scoped>
 
-@media (min-width: 1024px) {
+
+@media (min-width: 512px) {
   .friends-box {
     min-height: 100vh;
     display: flex;
@@ -40,6 +41,7 @@
     transition: .3s ease;
   }
 }
+
 
     .friends {
         margin-left: 1000px;

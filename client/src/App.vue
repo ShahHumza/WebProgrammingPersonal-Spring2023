@@ -7,11 +7,7 @@ import Dashboard2 from './components/Dashboard2.vue';
 </script>
 
 <template>
-
-
     <Dashboard2 />
-
-
 
     <div class="container">
         <RouterView />

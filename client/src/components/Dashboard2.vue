@@ -41,131 +41,128 @@ if (savedMode === 'dark') {
 
 
 <template>
-  <main class="main"> 
-<!-- SIDEBAR -->
-<div :class="{ 'dark-mode': isDarkMode }">
-    <section id="sidebar">
-      <RouterLink to="/" class="brand">
-        <i class='bx bxs-smile'></i>
-        <span class="text">HumSite</span>
-      </RouterLink>
-      <ul class="side-menu top">
-        <li>
-          <RouterLink to="/" class="active">
-            <i class='bx bxs-dashboard'></i>
-            <span class="text">Dashboard</span>
-          </RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/friends">
-            <i class='bx bxs-shopping-bag-alt'></i>
-            <span class="text">Friends</span>
-          </RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/about">
-            <i class='bx bxs-doughnut-chart'></i>
-            <span class="text">Workout</span>
-          </RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/products">
-            <i class='bx bxs-message-dots'></i>
-            <span class="text">Messages</span>
-          </RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/admin">
-            <i class='bx bxs-group'></i>
-            <span class="text">Admin</span>
-          </RouterLink>
-        </li>
-      </ul>
-      <ul class="side-menu">
-        <li>
-          <a>
-            <i class='bx bxs-cog'></i>
-            <span class="text">Settings</span>
-          </a>
-        </li>
-        <li>
-          <a class="logout" @click="logout">
-            <i class='bx bxs-log-out-circle'></i>
-            <span class="text">Logout</span>
-          </a>
-        </li>
-      </ul>
-    </section>
+  <main class="main">
     <!-- SIDEBAR -->
+    <div :class="{ 'dark-mode': isDarkMode }">
+      <section id="sidebar">
+        <RouterLink to="/" class="brand">
+          <i class='bx bxs-smile'></i>
+          <span class="text">HumSite</span>
+        </RouterLink>
+        <ul class="side-menu top">
+          <li>
+            <RouterLink to="/" class="active">
+              <i class='bx bxs-dashboard'></i>
+              <span class="text">Dashboard</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/friends">
+              <i class='bx bxs-shopping-bag-alt'></i>
+              <span class="text">Friends</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/workouts">
+              <i class='bx bxs-doughnut-chart'></i>
+              <span class="text">Workout</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/login">
+              <i class='bx bxs-message-dots'></i>
+              <span class="text">Messages</span>
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink to="/admin">
+              <i class='bx bxs-group'></i>
+              <span class="text">Admin</span>
+            </RouterLink>
+          </li>
+        </ul>
+        <ul class="side-menu">
+          <li>
+            <a>
+              <i class='bx bxs-cog'></i>
+              <span class="text">Settings</span>
+            </a>
+          </li>
+          <li>
+            <a class="logout" @click="logout">
+              <i class='bx bxs-log-out-circle'></i>
+              <span class="text">Logout</span>
+            </a>
+            <i>
+              <LoginBadge />
+            </i>
+          </li>
+        </ul>
+      </section>
+      <!-- SIDEBAR -->
 
-    <!-- CONTENT -->
-    <section id="content">
-      <!-- NAVBAR -->
+      <!-- CONTENT -->
+      <section id="content">
+        <!-- NAVBAR -->
 
-      <nav>
-        <i class='bx bx-menu'></i>
-        <a class="nav-link">Categories</a>
-        <form action="#">
-          <div class="form-input">
-            <input type="search" placeholder="Search...">
-            <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
-          </div>
-        </form>
-        <a class="notification">
-          <i>
-            <LoginBadge />
-          </i>
-          <span class="num">8</span>
-        </a>
-        <input type="checkbox" id="switch-mode" hidden>
-        <label for="switch-mode" class="switch-mode"></label>
-        <a class="notification">
-          <i class='bx bxs-bell'></i>
-          <span class="num">8</span>
-        </a>
-        <a class="profile">
-          <img src="img/people.png">
-        </a>
-      </nav>
+        <nav>
+          <i class='bx bx-menu'></i>
+          <a class="nav-link">Categories</a>
+          <form action="#">
+            <div class="form-input">
+              <input type="search" placeholder="Search...">
+              <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+            </div>
+          </form>
+          <a class="notification">
+          
+            <!-- <span class="num">8</span> -->
+          </a>
+          <input type="checkbox" id="switch-mode" hidden>
+          <label for="switch-mode" class="switch-mode"></label>
+          <a class="notification">
+            <i class='bx bxs-bell'></i>
+            <span class="num">8</span>
+          </a>
+          <a class="profile">
+            <img >
+          </a>
+        </nav>
 
-      <!-- NAVBAR -->
+        <!-- NAVBAR -->
 
 
 
 
-    </section>
-  </div>
+      </section>
+    </div>
   </main>
-  
 </template>
 
 
 
 <style scoped>
-/* styles for screens that are 600 pixels or wider */
+
 @media (min-width: 600px) {
 
-  /* add styles here */
   .main {
     width: 50%;
     height: 50%;
   }
 }
 
-/* styles for screens that are 900 pixels or wider */
+
 @media (min-width: 900px) {
 
-  /* add styles here */
   .main {
     width: 75%;
     height: 75%;
   }
 }
 
-/* styles for screens that are 1200 pixels or wider */
+
 @media (min-width: 1200px) {
 
-  /* add styles here */
   .main {
     width: 100%;
     height: 100%;

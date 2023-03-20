@@ -1,11 +1,11 @@
 <template>
   <div class="about">
-    <h1>This is an about pagesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</h1>
+    <h1>This is an about pageeeeeeeeeeeeeee</h1>
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
+@media (min-width: 512px) {
   .about {
     min-height: 100vh;
     display: flex;

@@ -72,7 +72,8 @@
 
 
 <style scoped>
-@media (min-width: 1024px) {
+
+@media (min-width: 512px) {
   .admin {
     min-height: 100vh;
     display: flex;

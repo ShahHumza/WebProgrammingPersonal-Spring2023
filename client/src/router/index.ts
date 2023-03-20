@@ -1,4 +1,3 @@
-
 import { createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ProductsVue from '@/views/Products.vue'
@@ -6,6 +5,7 @@ import LoginVue from '@/views/Login.vue'
 import { useSession } from '@/model/session'
 import AdminView from '@/views/AdminView.vue';
 import FriendsView from '@/views/FriendsView.vue';
+import WorkoutView from '@/views/WorkoutView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +15,7 @@ const router = createRouter({
     { path: '/login', name: 'login', component: LoginVue },
     { path: '/admin', name: 'admin', component: AdminView, beforeEnter: secureAdmin},
     { path: '/friends', name: 'friends', component: FriendsView },
+    { path: '/workouts', name: 'workouts', component: WorkoutView },
 
 
 
