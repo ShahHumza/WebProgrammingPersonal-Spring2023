@@ -1,11 +1,11 @@
 <script setup lang="ts">
 
 
-
 </script>
 
 
 <template>
+
   <div class="admin">
     <h1>
       Welcome to the Admin Page
@@ -50,7 +50,7 @@
             </td>
           </tr>
           <tr>
-            <td><img src="https://via.placeholder.com/50x50.png" alt="Profile Picture"></td>
+            <td><img src="" alt="Profile Picture" width="50" height="50"></td>
             <td>Thomas</td>
             <td>Coffey</td>
             <td>Coffey@gmail.com</td>

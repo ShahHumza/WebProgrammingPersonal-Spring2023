@@ -4,6 +4,7 @@ import LoginBadge from './LoginBadge.vue';
 import { RouterLink } from 'vue-router';
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
 import { useSession, useLogout } from '@/model/session';
+import ProfilePicture from './ProfilePicture.vue';
 
 // Allows my button to logout too// bottom left red logout button
 const logout = useLogout();
@@ -125,7 +126,7 @@ if (savedMode === 'dark') {
             <span class="num">8</span>
           </a>
           <a class="profile">
-            <img >
+            <ProfilePicture />
           </a>
         </nav>
 

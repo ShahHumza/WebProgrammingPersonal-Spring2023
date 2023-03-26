@@ -25,6 +25,7 @@ export default defineComponent({
 </script>
 
 <template>
+  
   <main class="work">
     <h1 class="title">
       <div>
@@ -42,6 +43,10 @@ export default defineComponent({
       <button @click="addWorkout">Add Workout</button>
       <br>
       <ul>
+
+        
+
+        
         <li v-for="(workout, index) in user?.workouts" :key="index">
           <div class="box">
 
@@ -100,5 +105,4 @@ export default defineComponent({
     left: 280px;
     transition: .3s ease;
   }
-}
-</style>
+}</style>

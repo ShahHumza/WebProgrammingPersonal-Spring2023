@@ -13,6 +13,7 @@ const Humza: User = {
   friends: [],
   status: true,
   workouts: [],
+  pfp: "../assets/ProfilePictures/Patrick-PNG-File.png",
 };
 
 const Tanner: User = {
@@ -20,6 +21,7 @@ const Tanner: User = {
   friends: [],
   status: false,
   workouts: [],
+  pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
 };
 
 const Tom: User = {
@@ -27,9 +29,10 @@ const Tom: User = {
   friends: [],
   status: true,
   workouts: [],
+  pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
 };
 
-interface User {
+export interface User {
   id?: number;
   name: string;
   email?: string;
@@ -43,9 +46,14 @@ interface User {
     duration: number;
     name: string;
   }[];
+  pfp: string;
 }
 
 export function useSession() {
+  while (session == null)
+  {
+    console.log("waiting for session");
+  }
   return session;
 }
 
@@ -57,6 +65,7 @@ export function login(user: string) {
       friends: [Tanner, Tom],
       status: true,
       workouts: workoutData[user],
+      pfp: "C:\Users\humza\OneDrive\Desktop\Web ClassPersonal\WebProgrammingPersonal-Spring2023\client\src\assets\ProfilePictures\Patrick-PNG-File.png",
     };
   } else if (user === "Tanner Festa") {
     session.user = {
@@ -64,6 +73,7 @@ export function login(user: string) {
       friends: [Humza, Tom],
       status: false,
       workouts: workoutData[user],
+      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
     };
   } else if (user === "Thomas Coffey") {
     session.user = {
@@ -71,6 +81,7 @@ export function login(user: string) {
       friends: [Humza, Tanner],
       status: true,
       workouts: workoutData[user],
+      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
     };
   } else {
     console.error("Invalid user selected");
@@ -96,4 +107,8 @@ export function addWorkout(date: string, duration: number, name: string) {
 
 export function getWorkouts(): User["workouts"] {
   return session.user ? session.user.workouts : [];
+}
+
+export function isLoggedIn() {
+  return session.user !== null;
 }
