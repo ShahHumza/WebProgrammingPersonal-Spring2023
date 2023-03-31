@@ -7,13 +7,13 @@ const session = reactive({
   workouts: [] as string[],
 });
 
-const Humza: User = {
+export const Humza: User = {
   name: "Humza Shah",
   role: "admin",
   friends: [],
   status: true,
   workouts: [],
-  pfp: "../assets/ProfilePictures/Patrick-PNG-File.png",
+  pfp: "/assets/ProfilePictures/Patrick-PNG-File.png",
 };
 
 const Tanner: User = {

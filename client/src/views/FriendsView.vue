@@ -21,7 +21,7 @@ const session = useSession();
       <article class="media">
         <div class="media-left">
           <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+            <img :src="friend.pfp" alt="Image">
           </figure>
         </div>
         <div class="media-content">

@@ -1,18 +1,23 @@
+<script lang ="ts">
+  import { Humza } from '@/model/session';
 
-<script setup lang ="ts">
-import { useSession } from '@/model/session';
-
-const session = useSession();
+export default {
+  name: 'AnotherComponent',
+  data() {
+    return {
+      user: Humza
+    }
+  }
+}
+  
 </script>
-
 
 <template>
   <div>
-    <img :src="(session.user?.pfp)" alt="Profile Picture" />
+    <img :src="user.pfp" width="128" length="128">
   </div>
 </template>
 
 
 <style scoped>
-
 </style>
