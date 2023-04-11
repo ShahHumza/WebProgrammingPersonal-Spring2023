@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="t">
         <h1 class="titles">
             Login
         </h1>
@@ -15,22 +15,12 @@
 </template>
 
 <style scoped>
-  @media (min-width: 512px) {
-    .subtitle {
-      text-align: right;
-      position: absolute;
-      top: 80px;
-      right: 0;
-      left: 250px;
-      width: calc(100% - 280px);
-      transition: .3s ease;
-    }
-  }
-  @media (min-width: 512px) {
-  .titles{
+ @media (min-width: 512px) {
+  .t {
     min-height: 100vh;
     display: flex;
     text-align: right;
+    margin-top: -700px;
 
     /* This alligns it */
     position: relative;

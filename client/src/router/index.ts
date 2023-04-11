@@ -6,6 +6,7 @@ import { useSession } from '@/model/session'
 import AdminView from '@/views/AdminView.vue';
 import FriendsView from '@/views/FriendsView.vue';
 import WorkoutView from '@/views/WorkoutView.vue'
+import DashBoardVue from '@/views/DashBoard.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,7 @@ const router = createRouter({
     { path: '/admin', name: 'admin', component: AdminView, beforeEnter: secureAdmin},
     { path: '/friends', name: 'friends', component: FriendsView },
     { path: '/workouts', name: 'workouts', component: WorkoutView },
+    { path: '/dashboard', name: 'dashboard', component: DashBoardVue},
 
 
 

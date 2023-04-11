@@ -38,30 +38,31 @@ function logout2() {
             </a>
           </div>
         </div>
+        <a class="button is-info" style="margin-right: 150px;">
+          <span class="icon">
+            <i class="fas fa-user-plus"></i>
+          </span>
+          <strong>Sign up</strong>
+        </a>
       </div>
-      <a class="button is-info" style="margin-right: 150px;">
-        <span class="icon">
-          <i class="fas fa-user-plus"></i>
-        </span>
-        <strong>Sign up</strong>
-      </a>
     </div>
     <div v-else>
       <div class="navbar-item" style="outline: none;">
-         Welcome, {{ session.user.name }}<!-- (<a @click="logout2()">logout</a>) -->
+        Welcome, {{ session.user.name }}(<a @click="logout2()">logout</a>)
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .color-box {
-    background-color: transparent;
-    
-  }
-  .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.color-box {
+  background-color: transparent;
+
+}
+
+.auth-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>
