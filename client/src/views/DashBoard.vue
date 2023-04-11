@@ -186,18 +186,5 @@
 
 
 <style scoped>
-@media (min-width: 512px) {
-  .d {
-    min-height: 100vh;
-    display: flex;
-    text-align: right;
-    margin-top: -700px;
 
-    /* This alligns it */
-    position: relative;
-    width: calc(100% - 280px);
-    left: 280px;
-    transition: .3s ease;
-  }
-}
 </style>

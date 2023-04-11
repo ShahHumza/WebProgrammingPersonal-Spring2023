@@ -42,10 +42,13 @@
                         <li><a>Authentication</a></li>
                     </ul>
                     <p class="menu-label">
-                        Transactions
+                        Workout Tools
                     </p>
                     <ul class="menu-list">
-                        <li><a>Payments</a></li>
+                        <RouterLink to="/workouts">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">Workout</span>
+                        </RouterLink>
                         <li><a>Transfers</a></li>
                         <li><a>Balance</a></li>
                     </ul>
