@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { useSession, addWorkout } from '@/model/session';
+import { useSession, addWorkout, deleteWorkout } from '@/model/session';
 
 
 export default defineComponent({
@@ -13,10 +13,15 @@ export default defineComponent({
       newWorkout.value = { name: '', duration: 0, date: '' };
     };
 
+    const deleteWorkoutHandler = (index: number) => {
+      deleteWorkout(index);
+    }
+
     return {
       user: session.user,
       newWorkout,
       addWorkout: addWorkoutHandler,
+      deleteWorkout: deleteWorkoutHandler
     };
   },
 });
@@ -36,24 +41,19 @@ export default defineComponent({
         <label>Workout Duration(minutes):</label>
         <input type="text" v-model="newWorkout.duration">
       </div>
-      <div>
+      <!-- <div>
         <label>Workout Date:</label>
         <input type="text" v-model="newWorkout.date">
-      </div>
+      </div> -->
       <button @click="addWorkout">Add Workout</button>
       <br>
       <ul>
 
-        
-
-        
         <li v-for="(workout, index) in user?.workouts" :key="index">
           <div class="box">
-
-            {{ workout.name }} - {{ workout.duration }} - {{ workout.date }}
-
+            {{ workout.name }} - {{ workout.duration }} <!--  - {{ workout.date }} -->
+            <button class="delete" @click="deleteWorkout(index)"></button>
           </div>
-
         </li>
       </ul>
     </h1>
@@ -94,7 +94,7 @@ export default defineComponent({
 }
 
 @media (min-width: 512px) {
-  .work,.t, .d, .friends-box, .admin {
+  .work,.t, .d, .friends-box, .admin{
     min-height: 100vh;
     display: flex;
     text-align: right;

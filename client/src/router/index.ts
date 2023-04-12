@@ -11,13 +11,13 @@ import DashBoardVue from '@/views/DashBoard.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', name: 'home', component: HomeView },
+    // { path: '/', name: 'home', component: HomeView },
     { path: '/products', name: 'products', component: ProductsVue, beforeEnter: secureRoute },
     { path: '/login', name: 'login', component: LoginVue },
     { path: '/admin', name: 'admin', component: AdminView, beforeEnter: secureAdmin},
     { path: '/friends', name: 'friends', component: FriendsView },
     { path: '/workouts', name: 'workouts', component: WorkoutView },
-    { path: '/dashboard', name: 'dashboard', component: DashBoardVue},
+    { path: '/', name: 'dashboard', component: DashBoardVue},
 
 
 

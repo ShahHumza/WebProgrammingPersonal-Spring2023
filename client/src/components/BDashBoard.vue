@@ -12,7 +12,7 @@
                         General
                     </p>
                     <ul class="menu-list">
-                        <RouterLink to="/dashboard" class="brand">
+                        <RouterLink to="/" class="brand">
                             <i class='bx bxs-smile'></i>
                             <span class="text">DashBoard</span>
                         </RouterLink>
