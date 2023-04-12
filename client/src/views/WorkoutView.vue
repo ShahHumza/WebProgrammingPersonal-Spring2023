@@ -94,11 +94,11 @@ export default defineComponent({
 }
 
 @media (min-width: 512px) {
-  .work,.t, .d {
+  .work,.t, .d, .friends-box, .admin {
     min-height: 100vh;
     display: flex;
     text-align: right;
-    margin-top: -700px;
+    margin-top: -350px;
 
     /* This alligns it */
     position: relative;

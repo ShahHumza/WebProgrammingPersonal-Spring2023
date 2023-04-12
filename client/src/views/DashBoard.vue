@@ -24,7 +24,7 @@
                 <div class="columns is-multiline">
                     <div class="column">
                         <div class="box">
-                            <div class="heading">Top Seller Total</div>
+                            <div class="heading">All Time</div>
                             <div class="title">56,950</div>
                             <div class="level">
                                 <div class="level-item">
@@ -50,7 +50,7 @@
                     </div>
                     <div class="column">
                         <div class="box">
-                            <div class="heading">Revenue / Expenses</div>
+                            <div class="heading">This Month</div>
                             <div class="title">55% / 45%</div>
                             <div class="level">
                                 <div class="level-item">
@@ -76,7 +76,7 @@
                     </div>
                     <div class="column">
                         <div class="box">
-                            <div class="heading">Feedback Activity</div>
+                            <div class="heading">This Week</div>
                             <div class="title">78% &uarr;</div>
                             <div class="level">
                                 <div class="level-item">
@@ -137,7 +137,7 @@
                             </p>
                             <div class="panel-block">
                                 <figure class="image is-16x9">
-                                    <img src="https://placehold.it/1280x720">
+                                    <img src="../assets/ProfilePictures/Patrick-PNG-File.png">
                                 </figure>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                             </p>
                             <div class="panel-block">
                                 <figure class="image is-16x9">
-                                    <img src="https://placehold.it/1280x720">
+                                    <img src="../assets/ProfilePictures/Patrick-PNG-File.png">
                                 </figure>
                             </div>
                         </div>
@@ -161,7 +161,7 @@
                             </p>
                             <div class="panel-block">
                                 <figure class="image is-16x9">
-                                    <img src="https://placehold.it/1280x720">
+                                    <img src="../assets/ProfilePictures/Patrick-PNG-File.png">
                                 </figure>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                             </p>
                             <div class="panel-block">
                                 <figure class="image is-16x9">
-                                    <img src="https://placehold.it/1280x720">
+                                    <img src="../assets/ProfilePictures/Patrick-PNG-File.png">
                                 </figure>
                             </div>
                         </div>

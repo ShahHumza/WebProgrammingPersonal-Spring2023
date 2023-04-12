@@ -21,6 +21,23 @@
                             <span class="text">Friends</span>
                         </RouterLink>
                     </ul>
+
+                    <p class="menu-label">
+                        Workout Tools
+                    </p>
+                    <ul class="menu-list">
+                        <RouterLink to="/workouts">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">Workouts</span>
+                        </RouterLink>
+                        <RouterLink to="/calories">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">Calorie Tracker</span>
+                        </RouterLink>
+                        <!-- <li><a>Transfers</a></li>
+                        <li><a>Balance</a></li> -->
+                    </ul>
+
                     <p class="menu-label">
                         Administration
                     </p>
@@ -29,29 +46,9 @@
                             <i class='bx bxs-group'></i>
                             <span class="text">Admin</span>
                         </RouterLink>
-                        <li>
-                            <a class="">Manage Your Team</a>
-                            <ul>
-                                <li><a>Members</a></li>
-                                <li><a>Plugins</a></li>
-                                <li><a>Add a member</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Invitations</a></li>
-                        <li><a>Cloud Storage Environment Settings</a></li>
-                        <li><a>Authentication</a></li>
+                            
                     </ul>
-                    <p class="menu-label">
-                        Workout Tools
-                    </p>
-                    <ul class="menu-list">
-                        <RouterLink to="/workouts">
-                            <i class='bx bxs-doughnut-chart'></i>
-                            <span class="text">Workout</span>
-                        </RouterLink>
-                        <li><a>Transfers</a></li>
-                        <li><a>Balance</a></li>
-                    </ul>
+                    
                 </nav>
             </aside>
 
