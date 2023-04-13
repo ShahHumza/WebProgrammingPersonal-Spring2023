@@ -34,6 +34,10 @@
                             <i class='bx bxs-doughnut-chart'></i>
                             <span class="text">Calorie Tracker</span>
                         </RouterLink>
+                        <RouterLink to="/weight">
+                            <i class='bx bxs-doughnut-chart'></i>
+                            <span class="text">Weight Tracker</span>
+                        </RouterLink>
                         <!-- <li><a>Transfers</a></li>
                         <li><a>Balance</a></li> -->
                     </ul>

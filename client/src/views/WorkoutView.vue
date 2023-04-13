@@ -30,7 +30,6 @@ export default defineComponent({
 </script>
 
 <template>
-  
   <main class="work">
     <h1 class="title">
       <div>
@@ -42,18 +41,25 @@ export default defineComponent({
         <input type="text" v-model="newWorkout.duration">
       </div>
       <!-- <div>
-        <label>Workout Date:</label>
-        <input type="text" v-model="newWorkout.date">
-      </div> -->
+            <label>Workout Date:</label>
+            <input type="text" v-model="newWorkout.date">
+          </div> -->
       <button @click="addWorkout">Add Workout</button>
       <br>
       <ul>
 
         <li v-for="(workout, index) in user?.workouts" :key="index">
-          <div class="box">
-            {{ workout.name }} - {{ workout.duration }} <!--  - {{ workout.date }} -->
+          <div class="notification is-primary">
             <button class="delete" @click="deleteWorkout(index)"></button>
+            {{ workout.name }} - {{ workout.duration }}
           </div>
+
+
+          <!-- <div class="box"> -->
+
+          
+          <!-- </div> -->
+
         </li>
       </ul>
     </h1>
@@ -94,7 +100,12 @@ export default defineComponent({
 }
 
 @media (min-width: 512px) {
-  .work,.t, .d, .friends-box, .admin{
+
+  .work,
+  .t,
+  .d,
+  .friends-box,
+  .admin {
     min-height: 100vh;
     display: flex;
     text-align: right;

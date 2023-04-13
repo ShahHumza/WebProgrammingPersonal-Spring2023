@@ -7,6 +7,8 @@ import AdminView from '@/views/AdminView.vue';
 import FriendsView from '@/views/FriendsView.vue';
 import WorkoutView from '@/views/WorkoutView.vue'
 import DashBoardVue from '@/views/DashBoard.vue'
+import WeightViewVue from '@/views/WeightView.vue'
+import CalorieViewVue from '@/views/CalorieView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +20,8 @@ const router = createRouter({
     { path: '/friends', name: 'friends', component: FriendsView },
     { path: '/workouts', name: 'workouts', component: WorkoutView },
     { path: '/', name: 'dashboard', component: DashBoardVue},
+    { path: '/calories', name: 'calories', component: CalorieViewVue },
+    { path: '/weight', name: 'weight', component: WeightViewVue },
 
 
 
