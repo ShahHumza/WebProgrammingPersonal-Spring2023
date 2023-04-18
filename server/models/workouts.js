@@ -1,40 +1,44 @@
 const data = require('../data/workouts.json');
 
-function getWorkouts() {
-  return data.workouts;
+function getWorkouts(username) {
+  return data[username];
 }
 
 function getWorkoutById(id) {
-  return data.workouts.find(workout => workout.id === id);
+  for (const username in data) {
+    const workouts = data[username];
+    const workout = workouts.find(w => w.id === id);
+    if (workout) {
+      return workout;
+    }
+  }
+  return null;
 }
 
 function addWorkout(workout) {
-  workout.id = data.workouts.length + 1;
   const username = workout.username;
-  delete workout.username;
   if (data[username]) {
+    workout.id = data[username].length + 1;
     data[username].push(workout);
   } else {
+    workout.id = 1;
     data[username] = [workout];
   }
 }
 
 function updateWorkout(workout) {
-  const index = data.workouts.findIndex(w => w.id === workout.id);
-  data.workouts[index] = workout;
+  const username = workout.username;
+  if (data[username]) {
+    const index = data[username].findIndex(w => w.id === workout.id);
+    data[username][index] = workout;
+  }
 }
 
-function deleteWorkout(id) {
-  const index = data.workouts.findIndex(w => w.id === id);
-  data.workouts.splice(index, 1);
-}
-
-function searchWorkouts(searchTerm) {
-  return data.workouts.filter(workout => {
-    return workout.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      workout.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      workout.category.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+function deleteWorkout(id, username) {
+  if (data[username]) {
+    const index = data[username].findIndex(w => w.id === id);
+    data[username].splice(index, 1);
+  }
 }
 
 module.exports = {
@@ -43,5 +47,5 @@ module.exports = {
   addWorkout,
   updateWorkout,
   deleteWorkout,
-  searchWorkouts
+
 };

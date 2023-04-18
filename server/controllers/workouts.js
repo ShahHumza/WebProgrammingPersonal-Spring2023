@@ -1,25 +1,43 @@
 const express = require('express');
-const model = require('../models/workout');
+const model = require('../models/workouts');
 const router = express.Router();
 
 router
-  .get('/', (req, res) => {
-    const list = model.getWorkouts();
+.get('/', (req, res) => {
+  try {
+    const list = model.getWorkouts() || [];
     const data = { data: list, total: list.length, isSuccess: true };
-    res.send(data)
-  })
-  .get('/search/:q', (req, res) => {
+    res.send(data);
+  } catch (err) {
+    console.error(err);
+    const data = { error: err.message, isSuccess: false };
+    res.status(500).send(data);
+  }
+})
+.get('/search/:q', (req, res) => {
+  try {
     const term = req.params.q;
-    const list = model.searchWorkouts(term);
+    const list = model.searchWorkouts(term) || [];
     const data = { data: list, total: list.length, isSuccess: true };
-    res.send(data)
-  })
-  .get('/:id', (req, res) => {
+    res.send(data);
+  } catch (err) {
+    console.error(err);
+    const data = { error: err.message, isSuccess: false };
+    res.status(500).send(data);
+  }
+})
+.get('/:id', (req, res) => {
+  try {
     const id = +req.params.id;
     const workout = model.getWorkoutById(id);
     const data = { data: workout, isSuccess: true };
-    res.send(data)
-  })
+    res.send(data);
+  } catch (err) {
+    console.error(err);
+    const data = { error: err.message, isSuccess: false };
+    res.status(500).send(data);
+  }
+})
   .post('/', (req, res) => {
     const workout = req.body;
     model.addWorkout(workout);
