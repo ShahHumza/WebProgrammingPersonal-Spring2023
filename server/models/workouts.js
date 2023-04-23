@@ -1,7 +1,8 @@
 const data = require('../data/workouts.json');
 
 function getWorkouts(username) {
-  return data[username];
+  // console.log(username)
+  return data[username]
 }
 
 function getWorkoutById(id) {
@@ -15,7 +16,7 @@ function getWorkoutById(id) {
   return null;
 }
 
-function addWorkout(workout) {
+function addWorkouts(workout) {
   const username = workout.username;
   if (data[username]) {
     workout.id = data[username].length + 1;
@@ -44,7 +45,7 @@ function deleteWorkout(id, username) {
 module.exports = {
   getWorkouts,
   getWorkoutById,
-  addWorkout,
+  addWorkouts,
   updateWorkout,
   deleteWorkout,
 

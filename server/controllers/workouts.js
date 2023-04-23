@@ -3,9 +3,10 @@ const model = require('../models/workouts');
 const router = express.Router();
 
 router
-.get('/', (req, res) => {
+.get('/:username', (req, res) => {
   try {
-    const list = model.getWorkouts() || [];
+    const username = req.params.username
+    const list = model.getWorkouts(username)
     const data = { data: list, total: list.length, isSuccess: true };
     res.send(data);
   } catch (err) {
@@ -40,7 +41,7 @@ router
 })
   .post('/', (req, res) => {
     const workout = req.body;
-    model.addWorkout(workout);
+    model.addWorkouts(workout);
     const data = { data: workout, isSuccess: true };
     res.send(data)
   })

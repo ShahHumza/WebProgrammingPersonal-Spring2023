@@ -22,8 +22,9 @@ app
     .get('/api/v1/', (req, res) => {
         res.send('Hello World! From Express')
     })
+    .use('/workouts', workouts)
     .use('/api/v1/workouts', workouts)
-
+    
 // Catch all
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/dist/index.html'))

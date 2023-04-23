@@ -2,10 +2,10 @@
 GET http://localhost:3000/
 
 ###
-GET http://localhost:3000/api/v1/workouts
+GET http://localhost:3000/api/v1/workouts/Tanner Festa
 
 ###
-GET http://localhost:3000/api/v1/products/1
+GET http://localhost:3000/api/v1/workouts/1
 
 ###
 POST http://localhost:3000/api/v1/workouts
@@ -15,12 +15,13 @@ some-other-header: with my very personal information
 {
     "date": "2023-03-19",
     "duration": 10,
-    "name": "Cowddwwddwdw"
+    "name": "dwwd",
+    "username": "Humza Shah"
 
 }
 
 ###
-DELETE http://localhost:3000/api/v1/products/1
+DELETE http://localhost:3000/api/v1/workouts/1
 
 ###
 GET http://localhost:3000/api/v1/products/search/bridge

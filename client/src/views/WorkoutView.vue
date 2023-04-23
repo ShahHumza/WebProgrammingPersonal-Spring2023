@@ -1,30 +1,48 @@
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import { useSession, addWorkout, deleteWorkout } from '@/model/session';
+<script setup lang="ts">
+  import { onMounted, ref } from 'vue';
+  import { useSession, addWorkout, deleteWorkout } from '@/model/session';
+  import type { Workout } from "@/model/workouts";
+  import { addWorkouts, getWorkouts } from "@/model/workouts";
 
 
-export default defineComponent({
-  setup() {
-    const session = useSession();
-    const newWorkout = ref({ date: '', duration: 0, name: '' });
+  const session = useSession();
+  const newWorkout = ref({ date: '', duration: 0, name: '' });
 
-    const addWorkoutHandler = () => {
-      addWorkout(newWorkout.value.date, newWorkout.value.duration, newWorkout.value.name);
-      newWorkout.value = { name: '', duration: 0, date: '' };
-    };
+  const addWorkoutHandler = () => {
+    addWorkout(newWorkout.value.date, newWorkout.value.duration, newWorkout.value.name);
+    newWorkout.value = { name: '', duration: 0, date: '' };
+  };
 
-    const deleteWorkoutHandler = (index: number) => {
-      deleteWorkout(index);
-    }
+  const deleteWorkoutHandler = (index: number) => {
+    deleteWorkout(index);
+  }
 
-    return {
-      user: session.user,
-      newWorkout,
-      addWorkout: addWorkoutHandler,
-      deleteWorkout: deleteWorkoutHandler
-    };
-  },
-});
+  const user = session.user;
+  const username = user?.name
+  
+
+  async function addToWorkouts(workout : Workout){
+    await addWorkouts(workout)
+
+
+  }
+  async function getUserWorkouts(user : string){
+    getWorkouts('Humza Shah').then((data) => {
+        work.value(data.data)
+        console.log(data.data)
+      })
+
+  }
+
+  const work = ref([] as any)
+  
+  
+    
+  onMounted(async () => {
+    getUserWorkouts('Humza Shah')
+  })
+
+//composition api
 
 
 </script>
@@ -44,7 +62,7 @@ export default defineComponent({
             <label>Workout Date:</label>
             <input type="text" v-model="newWorkout.date">
           </div> -->
-      <button @click="addWorkout">Add Workout</button>
+      <button @click="addToWorkouts(newWorkout)">Add Workout</button>
       <br>
       <ul>
 
