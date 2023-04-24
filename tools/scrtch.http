@@ -2,7 +2,7 @@
 GET http://localhost:3000/
 
 ###
-GET http://localhost:3000/api/v1/workouts/Tanner Festa
+GET http://localhost:3000/api/v1/workouts/Humza Shah
 
 ###
 GET http://localhost:3000/api/v1/workouts/1
@@ -15,7 +15,7 @@ some-other-header: with my very personal information
 {
     "date": "2023-03-19",
     "duration": 10,
-    "name": "dwwd",
+    "name": "ayooo",
     "username": "Humza Shah"
 
 }

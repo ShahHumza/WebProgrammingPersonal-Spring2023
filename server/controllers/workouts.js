@@ -42,6 +42,7 @@ router
   .post('/', (req, res) => {
     const workout = req.body;
     model.addWorkouts(workout);
+    // await addToWorkouts(workout);
     const data = { data: workout, isSuccess: true };
     res.send(data)
   })

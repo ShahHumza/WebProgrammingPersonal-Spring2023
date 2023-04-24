@@ -4,9 +4,9 @@
   import type { Workout } from "@/model/workouts";
   import { addWorkouts, getWorkouts } from "@/model/workouts";
 
-
   const session = useSession();
   const newWorkout = ref({ date: '', duration: 0, name: '' });
+  const workouts = ref([]);
 
   const addWorkoutHandler = () => {
     addWorkout(newWorkout.value.date, newWorkout.value.duration, newWorkout.value.name);
@@ -19,32 +19,22 @@
 
   const user = session.user;
   const username = user?.name
-  
 
   async function addToWorkouts(workout : Workout){
-    await addWorkouts(workout)
-
-
-  }
-  async function getUserWorkouts(user : string){
-    getWorkouts('Humza Shah').then((data) => {
-        work.value(data.data)
-        console.log(data.data)
-      })
-
+    await addWorkouts(workout);
+    getUserWorkouts();
   }
 
-  const work = ref([] as any)
-  
-  
-    
+  async function getUserWorkouts() {
+  getWorkouts(username || '').then((data) => {
+    workouts.value = data.data;
+    console.log(data.data);
+  });
+}
+
   onMounted(async () => {
-    getUserWorkouts('Humza Shah')
+    getUserWorkouts()
   })
-
-//composition api
-
-
 </script>
 
 <template>
@@ -65,19 +55,11 @@
       <button @click="addToWorkouts(newWorkout)">Add Workout</button>
       <br>
       <ul>
-
-        <li v-for="(workout, index) in user?.workouts" :key="index">
+        <li v-for="(workout, index) in workouts" :key="workout.id">
           <div class="notification is-primary">
             <button class="delete" @click="deleteWorkout(index)"></button>
             {{ workout.name }} - {{ workout.duration }}
           </div>
-
-
-          <!-- <div class="box"> -->
-
-          
-          <!-- </div> -->
-
         </li>
       </ul>
     </h1>
