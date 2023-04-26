@@ -6,24 +6,28 @@
 
   const session = useSession();
   const newWorkout = ref({ date: '', duration: 0, name: '' });
-  const workouts = ref([]);
+  const workouts = ref<Workout[]>([]);
 
-  const addWorkoutHandler = () => {
-    addWorkout(newWorkout.value.date, newWorkout.value.duration, newWorkout.value.name);
-    newWorkout.value = { name: '', duration: 0, date: '' };
-  };
+//   const addWorkoutHandler = () => {
+//   addWorkout(newWorkout.value.date, newWorkout.value.duration, newWorkout.value.name);
+//   newWorkout.value = { name: '', duration: 0, date: '' };
+//   getUserWorkouts();
+// };
 
-  const deleteWorkoutHandler = (index: number) => {
-    deleteWorkout(index);
-  }
+// const deleteWorkoutHandler = async (index: number) => {
+//   await deleteWorkout(index);
+//   getUserWorkouts();
+// }
 
   const user = session.user;
   const username = user?.name
 
-  async function addToWorkouts(workout : Workout){
-    await addWorkouts(workout);
-    getUserWorkouts();
-  }
+  async function addToWorkouts(name: string, duration: number) {
+  await addWorkouts(name, duration);
+  const newWorkout: Workout = { name, duration };
+  workouts.value.push(newWorkout);
+  console.log(newWorkout);
+}
 
   async function getUserWorkouts() {
   getWorkouts(username || '').then((data) => {
@@ -52,12 +56,12 @@
             <label>Workout Date:</label>
             <input type="text" v-model="newWorkout.date">
           </div> -->
-      <button @click="addToWorkouts(newWorkout)">Add Workout</button>
+          <button @click="addToWorkouts(newWorkout.name, newWorkout.duration)">Add Workout</button>
       <br>
       <ul>
         <li v-for="(workout, index) in workouts" :key="workout.id">
           <div class="notification is-primary">
-            <button class="delete" @click="deleteWorkout(index)"></button>
+            <button class="delete" @click=""></button>
             {{ workout.name }} - {{ workout.duration }}
           </div>
         </li>

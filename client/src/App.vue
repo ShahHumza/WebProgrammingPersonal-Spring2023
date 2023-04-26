@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 
 import BDashBoard from './components/BDashBoard.vue';
 import NavBar from './components/NavBar.vue';
@@ -9,7 +9,6 @@ import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
-    <!-- <Dashboard2 /> -->
     <NavBar />
     <BDashBoard />
     

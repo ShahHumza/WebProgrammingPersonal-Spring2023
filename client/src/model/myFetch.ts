@@ -11,9 +11,11 @@ export function rest(url: string, method: string = 'GET', body: any = undefined)
     return fetch(url, options).then(res => res.json());
 }
 
-export function api(url: string, method: string = 'GET', body: any = undefined){
-    return rest(API_URL + url, method, body);
+export function api(url: string, method?: string, data?: any){
+    return rest(API_URL + url, method, data);
+    
 }
+
 export type DataEnvelope<T> = {
     data: T,
     isSuccess: boolean,

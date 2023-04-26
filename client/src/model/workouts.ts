@@ -5,22 +5,18 @@ import  { api } from "./myFetch";
 
 export interface Workout {
   name: string;
-  date: string;
   duration: number;
 }
 
-export function getWorkouts(user: string): Promise<DataEnvelope<Workout[]>> {
-  return api('workouts/' + user);
+export function getWorkouts(name: string): Promise<DataEnvelope<Workout[]>> {
+  return api('workouts/' + name);
 }
 
-export function addWorkouts(workout: Workout): Promise<DataEnvelope<Workout>> {
-  const requestConfig = {
-    method: 'POST',
-    body: JSON.stringify(workout),
-  };
-  return api('workouts')
+export function addWorkouts(name: string, duration: number): Promise<DataEnvelope<Workout>> {
+  return api('workouts', 'POST', { name, duration });
 }
+
 
 export function deleteWorkout(index: number): Promise<DataEnvelope<Workout[]>> {
-  return api('workouts/')
+  return api(`workouts/${index}`);
 }
