@@ -7,6 +7,7 @@ router
   try {
     const username = req.params.username
     const list = model.getWorkouts(username)
+    console.log(list)
     const data = { data: list, total: list.length, isSuccess: true };
     res.send(data);
   } catch (err) {

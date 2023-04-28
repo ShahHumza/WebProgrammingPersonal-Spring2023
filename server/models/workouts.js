@@ -18,11 +18,12 @@ function getWorkoutById(id) {
 
 function addWorkouts(workout) {
   const username = workout.username;
+  const w = {name: workout.name, duration: workout.duration};
+  console.log(username)
+  console.log(workout)
   if (data[username]) {
-    workout.id = data[username].length + 1;
-    data[username].push(workout);
+    data[username].push(w);
   } else {
-    workout.id = 1;
     data[username] = [workout];
   }
 }

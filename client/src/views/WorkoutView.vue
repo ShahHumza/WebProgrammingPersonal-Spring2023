@@ -8,36 +8,33 @@
   const newWorkout = ref({ date: '', duration: 0, name: '' });
   const workouts = ref<Workout[]>([]);
 
-//   const addWorkoutHandler = () => {
-//   addWorkout(newWorkout.value.date, newWorkout.value.duration, newWorkout.value.name);
-//   newWorkout.value = { name: '', duration: 0, date: '' };
-//   getUserWorkouts();
-// };
-
-// const deleteWorkoutHandler = async (index: number) => {
-//   await deleteWorkout(index);
-//   getUserWorkouts();
-// }
-
   const user = session.user;
   const username = user?.name
 
-  async function addToWorkouts(name: string, duration: number) {
-  await addWorkouts(name, duration);
-  const newWorkout: Workout = { name, duration };
-  workouts.value.push(newWorkout);
-  console.log(newWorkout);
+  async function addToWorkouts(user: string, name: string, duration: number) {
+  await addWorkouts('Humza Shah',name, duration);
+  // getUserWorkouts(name, duration)
+  getUserWorkouts()
 }
+// Figure out how to get User, replace 'Humza Shah' with user variable and then ur good
+//should be in session.ts
+
+
+  // async function deleteFromWorkouts(index: number) {
+  //   await deleteWorkout(index);
+  //   getUserWorkouts();
+  // }
 
   async function getUserWorkouts() {
-  getWorkouts(username || '').then((data) => {
-    workouts.value = data.data;
-    console.log(data.data);
-  });
-}
+    getWorkouts(username || '').then((data) => {
+      workouts.value = data.data;
+      // console.log(data.data);
+      // data.data.push({ name, duration });
+    });
+  }
 
   onMounted(async () => {
-    getUserWorkouts()
+    getUserWorkouts();""
   })
 </script>
 
@@ -56,7 +53,7 @@
             <label>Workout Date:</label>
             <input type="text" v-model="newWorkout.date">
           </div> -->
-          <button @click="addToWorkouts(newWorkout.name, newWorkout.duration)">Add Workout</button>
+          <button @click="addToWorkouts('Humza Shah', newWorkout.name, newWorkout.duration)">Add Workout</button>
       <br>
       <ul>
         <li v-for="(workout, index) in workouts" :key="workout.id">

@@ -1,19 +1,22 @@
-const API_URL = 'http://localhost:3000/api/v1/';
+const API_URL = 'http://localhost:3000/api/v1/'
 
-export function rest(url: string, method: string = 'GET', body: any = undefined){
-    const options = {
-        method: method,
+export function rest(url: string, data?: any, method?: string, headers?: any){
+    return fetch(url, {
+        method: method ?? (data ? 'POST' : 'GET'),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            ...headers,
         },
-        body: body ? JSON.stringify(body) : undefined
-    };
-    return fetch(url, options).then(res => res.json());
+        body: data ? JSON.stringify(data) : undefined,
+    })
+        .then(res => res.ok 
+            ? res.json() 
+            : res.json().then(x=> { throw({ ...x, message: x.error }) } )
+        );
 }
 
-export function api(url: string, method?: string, data?: any){
-    return rest(API_URL + url, method, data);
-    
+export function api(url: string, data?: any, method?: string, headers?: any){
+    return rest(API_URL + url, data, method, headers);
 }
 
 export type DataEnvelope<T> = {

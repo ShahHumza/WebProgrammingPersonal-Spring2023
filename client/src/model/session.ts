@@ -42,7 +42,7 @@ export interface User {
   friends: User[];
   status: boolean;
   workouts: {
-    date: string;
+    date?: string;
     duration: number;
     name: string;
   }[];
@@ -55,6 +55,14 @@ export function useSession() {
     console.log("waiting for session");
   }
   return session;
+}
+
+export function useUser() {
+  // while(session.user == null)
+  // {
+  //   console.log("waiting for user");
+  // }
+  // return session.user.name
 }
 
 export function login(user: string) {
