@@ -58,11 +58,8 @@ export function useSession() {
 }
 
 export function useUser() {
-  // while(session.user == null)
-  // {
-  //   console.log("waiting for user");
-  // }
-  // return session.user.name
+  const username = session.user?.name ?? "Unknown User";
+  return username;
 }
 
 export function login(user: string) {

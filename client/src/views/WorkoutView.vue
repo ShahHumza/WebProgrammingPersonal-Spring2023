@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
-  import { useSession, addWorkout, deleteWorkout } from '@/model/session';
+  import { useSession, addWorkout, deleteWorkout, useUser} from '@/model/session';
   import type { Workout } from "@/model/workouts";
   import { addWorkouts, getWorkouts } from "@/model/workouts";
 
@@ -10,9 +10,10 @@
 
   const user = session.user;
   const username = user?.name
+  const userId = useUser()
 
   async function addToWorkouts(user: string, name: string, duration: number) {
-  await addWorkouts('Humza Shah',name, duration);
+  await addWorkouts(userId,name, duration);
   // getUserWorkouts(name, duration)
   getUserWorkouts()
 }
@@ -53,7 +54,7 @@
             <label>Workout Date:</label>
             <input type="text" v-model="newWorkout.date">
           </div> -->
-          <button @click="addToWorkouts('Humza Shah', newWorkout.name, newWorkout.duration)">Add Workout</button>
+          <button @click="addToWorkouts(userId, newWorkout.name, newWorkout.duration)">Add Workout</button>
       <br>
       <ul>
         <li v-for="(workout, index) in workouts" :key="workout.id">

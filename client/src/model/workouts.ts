@@ -2,10 +2,7 @@
 import { ref } from "vue";
 import type { DataEnvelope, DataListEnvelope } from "./myFetch";
 import  { api } from "./myFetch";
-import type { User } from "./session";
 
-
-const workouts = ref([] as User["workouts"])
 
 export interface Workout {
   name: string;
