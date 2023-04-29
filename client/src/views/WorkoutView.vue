@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
-  import { useSession, addWorkout, deleteWorkout, useUser} from '@/model/session';
-  import type { Workout } from "@/model/workouts";
+  import { useSession, addWorkout, useUser} from '@/model/session';
+  import { deleteWorkout, type Workout } from "@/model/workouts";
   import { addWorkouts, getWorkouts } from "@/model/workouts";
 
   const session = useSession();
@@ -12,19 +12,16 @@
   const username = user?.name
   const userId = useUser()
 
-  async function addToWorkouts(user: string, name: string, duration: number) {
-  await addWorkouts(userId,name, duration);
-  // getUserWorkouts(name, duration)
-  getUserWorkouts()
+  async function addToWorkouts(name: string, duration: number) {
+  await addWorkouts(userId, name, duration);
+  await getUserWorkouts()
 }
-// Figure out how to get User, replace 'Humza Shah' with user variable and then ur good
-//should be in session.ts
 
-
-  // async function deleteFromWorkouts(index: number) {
-  //   await deleteWorkout(index);
-  //   getUserWorkouts();
-  // }
+  async function removeWorkout(index :number) {
+    const workoutToDelete = workouts.value[index];
+    await deleteWorkout(workoutToDelete.id);
+    await getUserWorkouts()
+  }
 
   async function getUserWorkouts() {
     getWorkouts(username || '').then((data) => {
@@ -37,6 +34,7 @@
   onMounted(async () => {
     getUserWorkouts();""
   })
+  
 </script>
 
 <template>
@@ -54,12 +52,12 @@
             <label>Workout Date:</label>
             <input type="text" v-model="newWorkout.date">
           </div> -->
-          <button @click="addToWorkouts(userId, newWorkout.name, newWorkout.duration)">Add Workout</button>
+          <button @click="addToWorkouts(newWorkout.name, newWorkout.duration)">Add Workout</button>
       <br>
       <ul>
         <li v-for="(workout, index) in workouts" :key="workout.id">
           <div class="notification is-primary">
-            <button class="delete" @click=""></button>
+            <button class="delete" @click=" removeWorkout(index)"></button>
             {{ workout.name }} - {{ workout.duration }}
           </div>
         </li>
