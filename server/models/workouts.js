@@ -1,9 +1,24 @@
 const data = require('../data/workouts.json');
+const { connect, ObjectId } = require('./mongo');
 
-function getWorkouts(username) {
-  // console.log(username)
-  return data[username]
+// function getWorkouts(username) {
+//   // console.log(username)
+//   return data[username]
+// }
+
+const COLLECTION_NAME = 'workouts';
+
+async function collection() {
+  const db = await connect();
+  return db.collection(COLLECTION_NAME);
 }
+
+async function getWorkouts(username) {
+  const col = await collection();
+  return await col.find({ username: username }).toArray();
+}
+
+
 
 function getWorkoutById(id) {
   for (const username in data) {

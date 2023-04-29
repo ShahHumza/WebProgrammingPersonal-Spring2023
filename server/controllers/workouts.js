@@ -4,17 +4,18 @@ const router = express.Router();
 
 router
 .get('/:username', (req, res) => {
-  try {
-    const username = req.params.username
-    const list = model.getWorkouts(username)
-    console.log(list)
-    const data = { data: list, total: list.length, isSuccess: true };
-    res.send(data);
-  } catch (err) {
-    console.error(err);
-    const data = { error: err.message, isSuccess: false };
-    res.status(500).send(data);
-  }
+  const username = req.params.username;
+  model.getWorkouts(username)
+    .then((list) => {
+      console.log(list);
+      const data = { data: list, total: list.length, isSuccess: true };
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      const data = { error: err.message, isSuccess: false };
+      res.status(500).send(data);
+    });
 })
 .get('/search/:q', (req, res) => {
   try {
