@@ -5,6 +5,7 @@ import  { api } from "./myFetch";
 
 
 export interface Workout {
+  id: number;
   name: string;
   duration: number;
 }
@@ -23,6 +24,7 @@ export function addWorkouts(user: string, name: string, duration: number){
 }
 
 
-export function deleteWorkout(index: number): Promise<DataEnvelope<Workout[]>> {
-  return api(`workouts/${index}`);
+export function deleteWorkout(index: number){
+  
+  return api('workouts/' + index )
 }

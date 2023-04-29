@@ -118,8 +118,3 @@ export function isLoggedIn() {
   return session.user !== null;
 }
 
-export function deleteWorkout(index: number) {
-  if (session.user !== null) {
-    session.user.workouts.splice(index, 1);
-  }
-}

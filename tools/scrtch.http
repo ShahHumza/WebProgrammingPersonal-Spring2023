@@ -2,7 +2,7 @@
 GET http://localhost:3000/
 
 ###
-GET http://localhost:3000/api/v1/workouts/Thomas Coffey
+GET http://localhost:3000/api/v1/workouts/Humza Shah
 
 ###
 GET http://localhost:3000/api/v1/workouts/1
