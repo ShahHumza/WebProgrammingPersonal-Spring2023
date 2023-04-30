@@ -11,22 +11,20 @@
   "workspaces": [
     "client"
   ],
-
   "scripts": {
     "build": "npm i -ws && npm run build -ws",
     "start": "node server/index.js",
     "dev": "nodemon server/index.js --watch server"
   },
-
   "dependencies": {
-    "jsonwebtoken": "^9.0.0",
     "bcrypt": "^5.0.1",
-    "mongodb": "^5.2.0",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.0",
+    "mongodb": "^5.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
   }
-
 }

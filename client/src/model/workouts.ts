@@ -10,10 +10,11 @@ export interface Workout {
   duration: number;
 }
 
-export function getWorkouts(name: string): Promise<DataEnvelope<Workout[]>> {
+export function getWorkouts(name: string): Promise<DataListEnvelope<Workout>>{
   return api('workouts/' + name);
 }
 
+//name perameter is the workout name
 export function addWorkouts(user: string, name: string, duration: number){
   const newWorkout = { username: user, name: name, duration: duration }
 
@@ -24,7 +25,7 @@ export function addWorkouts(user: string, name: string, duration: number){
 }
 
 
-export function deleteWorkout(index: number){
+export function deleteWorkout(user: string, name: string, duration: number){
   
-  return api('workouts/' + index )
+  return api('workouts/deleteWorkout', {username: user, name: name, duration: duration})
 }

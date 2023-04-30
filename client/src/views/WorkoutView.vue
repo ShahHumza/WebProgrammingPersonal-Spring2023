@@ -17,9 +17,8 @@
   await getUserWorkouts()
 }
 
-  async function removeWorkout(index :number) {
-    const workoutToDelete = workouts.value[index];
-    await deleteWorkout(workoutToDelete.id);
+  async function removeWorkout(name: string, duration: number) {
+    await deleteWorkout(userId, name, duration);
     await getUserWorkouts()
   }
 
@@ -57,7 +56,7 @@
       <ul>
         <li v-for="(workout, index) in workouts" :key="workout.id">
           <div class="notification is-primary">
-            <button class="delete" @click=" removeWorkout(index)"></button>
+            <button class="delete" @click=" removeWorkout(workout.name, workout.duration)"></button>
             {{ workout.name }} - {{ workout.duration }}
           </div>
         </li>

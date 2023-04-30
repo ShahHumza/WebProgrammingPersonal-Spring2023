@@ -3,12 +3,20 @@ const model = require('../models/workouts');
 const router = express.Router();
 
 router
+//change /:username => /
+.get("/getWorkoutsTest", (req, res, next) => {
+  model.getWorkoutsTest()
+      .then(list => {
+          const data = { data: list, total: Object.keys(list).length, isSuccess: true };
+          res.send(data)
+      }).catch(next);
+})
 .get('/:username', (req, res) => {
   const username = req.params.username;
   model.getWorkouts(username)
     .then((list) => {
-      console.log(list);
       const data = { data: list, total: list.length, isSuccess: true };
+      // console.log(data)
       res.send(data);
     })
     .catch((err) => {
@@ -17,6 +25,23 @@ router
       res.status(500).send(data);
     });
 })
+// .get('/:username',(req, res) => {
+//   try {
+//     const username = req.params.username;
+//     // console.log(username)
+//     const list = model.getWorkouts(username);
+//     console.log(list)
+//     const data = { data: list, total: list.length, isSuccess: true };
+//     console.log(data)
+//     res.send(data);
+//   } catch (err) {
+//     console.error(err);
+//     const data = { error: err.message, isSuccess: false };
+//     res.status(500).send(data);
+//   }
+// })
+
+
 .get('/search/:q', (req, res) => {
   try {
     const term = req.params.q;
@@ -41,12 +66,19 @@ router
     res.status(500).send(data);
   }
 })
-  .post('/', (req, res) => {
+  .post('/', (req, res, next) => {
     const workout = req.body;
-    model.addWorkouts(workout);
-    // await addToWorkouts(workout);
-    const data = { data: workout, isSuccess: true };
-    res.send(data)
+    model.addWorkouts(workout)
+    .then((list) => {
+      const data = { data: list, total: list.length, isSuccess: true };
+      // console.log(data)
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      const data = { error: err.message, isSuccess: false };
+      res.status(500).send(data);
+    });
   })
   .patch('/:id', (req, res) => {
     const workout = req.body;
@@ -54,11 +86,19 @@ router
     const data = { data: workout, isSuccess: true };
     res.send(data)
   })
-  .delete('/:id', (req, res) => {
-    const id = +req.params.id;
-    model.deleteWorkout(id);
-    const data = { data: id, isSuccess: true };
-    res.send(data)
-  });
+  .post('/deleteWorkout', (req, res, next) => {
+    const item = req.body;
+    model.deleteWorkout(item)
+    .then((list) => {
+      const data = { data: list, total: list.length, isSuccess: true };
+      // console.log(data)
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error(err);
+      const data = { error: err.message, isSuccess: false };
+      res.status(500).send(data);
+    });
+  })
 
 module.exports = router;
