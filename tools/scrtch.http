@@ -2,6 +2,10 @@
 @jwt={{login.response.body.data.token}}
 
 ###
+GET http://localhost:{{port}}/api/v1/workouts?page=2&pageSize=30
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDQ2Yzc5MDc3ZjczY2VhNWU0ODE4NmQiLCJuYW1lIjoiSm9obiBEb2UiLCJlbWFpbCI6ImpvaG5AZG9lLmNvbSIsInBob3RvIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvaGljdmVsZGljdGEucG5nP3NpemU9NTB4NTAmc2V0PXNldDEiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2ODIzNjM2MjcsImV4cCI6MTY4MjQ1MDAyN30.ybb286CRlkT8sbL9Nii7FIgbbzhy3QatKlVXVUMwei8
+
+###
 GET http://localhost:{{port}}/api/v1/workouts/getWorkoutsTest
 
 ###
@@ -51,8 +55,8 @@ POST http://localhost:{{port}}/api/v1/users/login
 Content-Type: application/json
 
 {
-    "name": "Humza Shah",
-    "password": "Hum123"
+    "email": "john@doe.com",
+    "password": "123456"
 }
 
 ###
@@ -60,3 +64,12 @@ GET http://localhost:3000/api/v1/users/
 
 ###
 GET http://localhost:3000/api/v1/users/Humza Shah
+
+###
+POST http://localhost:3000/api/v1/workouts/seed
+
+###
+POST http://localhost:3000/api/v1/users/seed
+
+###
+GET http://localhost:3000/api/v1/users
