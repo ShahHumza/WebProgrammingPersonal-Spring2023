@@ -63,15 +63,27 @@ async function getByUser(username, page=1, pageSize=30) {
 
 
 
-function getById(id) {
-  for (const username in data) {
-    const workouts = data[username];
-    const workout = workouts.find(w => w.id === id);
-    if (workout) {
-      return workout;
-    }
+// function getById(id) {
+//   for (const username in data) {
+//     const workouts = data[username];
+//     const workout = workouts.find(w => w.id === id);
+//     if (workout) {
+//       return workout;
+//     }
+//   }
+//   return null;
+// }
+async function getById(id) {
+  const col = await collection('allWorkouts');
+  const items = await col.find().toArray();
+  for(item in items){
+    //console.log(item);
+    // console.log(items[item])
+    const it = items[item];
+    // console.log(it[username])
+    return it[username];
   }
-  return null;
+  return [];
 }
 
 async function add(workout, page=1, pageSize=30) {
@@ -102,12 +114,20 @@ async function add(workout, page=1, pageSize=30) {
   return it;
 }
 
-function update(workout) {
-  const username = workout.username;
-  if (data[username]) {
-    const index = data[username].findIndex(w => w.id === workout.id);
-    data[username][index] = workout;
-  }
+// function update(workout) {
+//   const username = workout.username;
+//   if (data[username]) {
+//     const index = data[username].findIndex(w => w.id === workout.id);
+//     data[username][index] = workout;
+//   }
+// }
+async function update(workout) {
+  const col = await collection('allWorkouts');
+  const result = await col.findOneAndUpdate(
+    { _id: ObjectId(workout.id) },
+    { $set: workout },
+    { returnDocument: 'after' }
+  )
 }
 
 async function deleteItem(workout, page=1, pageSize=30) {
