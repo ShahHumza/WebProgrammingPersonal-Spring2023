@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const workouts = require('./controllers/workouts');
 const users = require('./controllers/user')
+const { requireLogin, parseAuthorizationHeader } = require('./middleware/authorization')
 
 const app = express();
 const hostname = '127.0.0.1';
@@ -15,7 +16,7 @@ app
   .use(express.static(path.join(__dirname, '../client/dist')))
   .use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
     next()
 })
@@ -24,8 +25,8 @@ app
     .get('/api/v1/', (req, res) => {
         res.send('Hello World! From Express')
     })
-    // .use('/workouts', workouts)
-    .use('/api/v1/workouts', workouts)
+    .use('/api/v1/workouts', requireLogin(), workouts)
+    //.use('/api/v1/workouts', workouts)
     .use('/api/v1/users', users)
     
 // Catch all

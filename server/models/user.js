@@ -1,12 +1,9 @@
-const fs = require("fs");
-// const data = require('../data/workouts.json');
+//const data = require('../data/products.json');
 const jwt = require('jsonwebtoken');
-const { connect, ObjectId, DB_Name } = require('./mongo');
+const { connect, ObjectId } = require('./mongo');
+const { env } = require('process');
 
-const path = require('path');
-
-const COL_ALLWORKOUTS = 'users';
-
+const COLLECTION_NAME = 'users';
 
 const data = [
     {
@@ -25,151 +22,86 @@ const data = [
     },
 ]
 
-async function collection(COLLECTION_NAME) {
-  const db = await connect();
-  // console.log(COLLECTION_NAME)
-  return db.collection(COLLECTION_NAME);
+async function collection() {
+    const db = await connect();
+    return db.collection(COLLECTION_NAME);
 }
 
-async function getAll(page=1, pageSize=30) {
-  const col = await collection(COL_ALLWORKOUTS);
-  const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
-  const total = await col.countDocuments(); // Total documents, which is each box seperated with an ID
-  return { items, total };
+async function getAll(page = 1, pageSize = 30) {
+    const col = await collection();
+    const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments();
+    return { items, total };
 }
-
-// Read the file
-const allWorkoutsJSON = fs.readFileSync(path.join(__dirname, "../data/workouts.json"), "utf-8");
-const allWorkoutsDataScraped = JSON.parse(allWorkoutsJSON);
-console.log(allWorkoutsDataScraped)
-
-async function insert(colName, dbScraped) {
-  const col = await collection(colName);
-  //const result = await col.insertMany(dbScraped);
-  const result = await col.insertOne(dbScraped);//weird
-  
-}
-
-async function get() {
-  //await insertWorkouts("allWorkouts", allWorkoutsDataScraped); // Insert some documents into the collection
-  const col = await collection('allWorkouts');
-  console.log(col);
-  const count = await col.countDocuments();
-  console.log(`Number of documents in collection: ${count}`);
-  const items = await col.find().toArray();
-  return items;
-}
-
-async function getByUser(username, page=1, pageSize=30) {
-  const col = await collection('allWorkouts');
-  // console.log(col);
-  const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
-  for(item in items){
-    //console.log(item);
-    // console.log(items[item])
-    const it = items[item];
-    // console.log(it[username])
-    return it[username];
-  }
-  return [];
-}
-
-
-
 
 async function getById(id) {
-  const col = await collection('allWorkouts');
-  const items = await col.find().toArray();
-  for(item in items){
-    //console.log(item);
-    // console.log(items[item])
-    const it = items[item];
-    // console.log(it[username])
-    return it[username];
-  }
-  return [];
+    const col = await collection();
+    const item = await col.findOne({ _id: new ObjectId(id) });
+    return item;
 }
 
-async function add(workout, page=1, pageSize=30) {
-  const col = await collection('allWorkouts');
-  const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
-  
+async function add(item) {
+    const col = await collection();
 
-  const username = workout.username;
-  const it = items.find(item => item[username]); // Find the item containing the correct username
-  const it2 = it[username];
-  it2.push({ date: new Date().toISOString().substr(0, 10), duration: workout.duration, name: workout.name }); // Add the new workout to the it2 array
+    const result = await col.insertOne(item);
 
-  col.updateOne(
-    { _id: it._id }, // Query to find the correct document
-    { $set: { [username]: it2 } }, // Update the it2 field with the modified array
-    (err, res) => {
-      if (err) throw err;
-      console.log('1 document updated');
-      db.close();
-    }
-  );
-
-  return it;
+    item._id = result.insertedId;
+    return item;
 }
 
+async function update(item) {
 
-async function update(workout) {
-  const col = await collection('allWorkouts');
-  const result = await col.findOneAndUpdate(
-    { _id: ObjectId(workout.id) },
-    { $set: workout },
-    { returnDocument: 'after' }
-  )
+    console.log(item);
+    const col = await collection();
+    const result = await col.findOneAndUpdate(
+        { _id: new ObjectId(item.id) },
+        { $set: item },
+        { returnDocument: 'after' }
+    );
+
+    return result.value;
 }
 
-async function deleteItem(workout, page=1, pageSize=30) {
-  const col = await collection('allWorkouts');
-  const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
-  
-  const username = workout.username;
-  const name = workout.name;
-  const duration = workout.duration;
-  const it = items.find(item => item[username]); // Find the item containing the correct username
-  const it2 = it[username];
-  const index = it2.findIndex(w => w.name === name && w.duration === duration); // Find the index of the workout with matching name and duration
-  if (index !== -1) {
-    it2.splice(index, 1); // Remove the workout from the it2 array at the found index
-  }
-
-  col.updateOne(
-    { _id: it._id }, // Query to find the correct document
-    { $set: { [username]: it2 } }, // Update the it2 field with the modified array
-    (err, res) => {
-      if (err) throw err;
-      console.log('1 document updated');
-      db.close();
-    }
-  );
-
-  
-
-  return items;
+async function deleteItem(id) {
+    const col = await collection();
+    const result = await col.deleteOne({ _id: new ObjectId(id) });
+    return result.deletedCount;
 }
 
+async function search(searchTerm, page = 1, pageSize = 30) {
+    const col = await collection();
+    const query = {
+        $or: [
+            { name: { $regex: searchTerm, $options: 'i' } },
+            { email: { $regex: searchTerm, $options: 'i' } },
+        ]
+    };
 
-//Login Tokens
+    const items = await col.find(query).skip((page - 1) * pageSize).limit(pageSize).toArray();
+    const total = await col.countDocuments(query);
+    return { items, total };
+}
 
-async function login(name, password) {
-    const col = await collection('allWorkouts');
-    const user = await col.findOne({ [name]: { $exists: true } });
-    
+async function seed() {
+    const col = await collection();
+    const result = await col.insertMany(data);
+    return result.insertedCount;
+}
+
+async function login(email, password) {
+    const col = await collection();
+    const user = await col.findOne({ email });
     if (!user) {
         throw new Error('User not found');
     }
-    if (password !== password) {
+    if (user.password !== password) {
         throw new Error('Invalid password');
     }
 
     const cleanUser = { ...user, password: undefined };
-    const token = await generateTokenAsync(cleanUser, process.env.JWT_SECRET, '1d');
+    const token = await generateTokenAsync(cleanUser, '1d');
 
-    return { token };
+    return { user: cleanUser, token };
 }
 
 async function oAuthLogin(provider, accessToken) {
@@ -179,9 +111,9 @@ async function oAuthLogin(provider, accessToken) {
     // return the user
 }
 
-function generateTokenAsync(user, secret, expiresIn) {
+function generateTokenAsync(user, expiresIn) {
     return new Promise( (resolve, reject) => {
-        jwt.sign(user, secret, { expiresIn }, (err, token) => {
+        jwt.sign(user, process.env.JWT_SECRET ?? "", { expiresIn }, (err, token) => {
             if (err) {
                 reject(err);
             } else {
@@ -191,9 +123,9 @@ function generateTokenAsync(user, secret, expiresIn) {
     });
 }
 
-function verifyTokenAsync(token, secret) {
+function verifyTokenAsync(token) {
     return new Promise( (resolve, reject) => {
-        jwt.verify(token, secret, (err, user) => {
+        jwt.verify(token, process.env.JWT_SECRET ?? "", (err, user) => {
             if (err) {
                 reject(err);
             } else {
@@ -204,18 +136,17 @@ function verifyTokenAsync(token, secret) {
 }
 
 
-module.exports = {
-  getByUser,
-  getAll,
-  getById,
-  add,
-  update,
-  deleteItem,
-  get,
-  insert,
-  login,
-  oAuthLogin,
-  generateTokenAsync,
-  verifyTokenAsync,
 
+module.exports = {
+    getAll,
+    getById,
+    add,
+    update,
+    deleteItem,
+    search,
+    seed,
+    login,
+    oAuthLogin,
+    generateTokenAsync,
+    verifyTokenAsync,
 };
