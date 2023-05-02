@@ -27,13 +27,13 @@ function logout2() {
         </div>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
           <div class="dropdown-content">
-            <a href="#" class="dropdown-item" @click="login('Humza Shah')">
+            <a href="#" class="dropdown-item" @click="login('Humza Shah', 'Hum123')">
               Humza Shah
             </a>
-            <a href="#" class="dropdown-item" @click="login('Tanner Festa')">
+            <a href="#" class="dropdown-item" @click="login('Tanner Festa','hi')">
               Tanner Festa
             </a>
-            <a href="#" class="dropdown-item" @click="login('Thomas Coffey')">
+            <a href="#" class="dropdown-item" @click="login('Thomas Coffey','hi')">
               Tom Coffey
             </a>
           </div>

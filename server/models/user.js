@@ -20,6 +20,13 @@ const data = [
         "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
         "role": "user",
     },
+    {
+        "name": "Humza Shah",
+        "email": "H@101",
+        "password": "123456",
+        "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
+        "role": "admin",
+    },
 ]
 
 async function collection() {
@@ -91,12 +98,15 @@ async function seed() {
 async function login(email, password) {
     const col = await collection();
     const user = await col.findOne({ email });
+    console.log("User: "+user)
+    
     if (!user) {
         throw new Error('User not found');
     }
     if (user.password !== password) {
         throw new Error('Invalid password');
     }
+    console.log("h")
 
     const cleanUser = { ...user, password: undefined };
     const token = await generateTokenAsync(cleanUser, '1d');

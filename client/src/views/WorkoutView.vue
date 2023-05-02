@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
-  import { useSession, addWorkout, useUser} from '@/model/session';
+  import { useSession, useUser} from '@/model/session';
   import { deleteWorkout, type Workout } from "@/model/workouts";
   import { addWorkouts, getWorkouts } from "@/model/workouts";
 

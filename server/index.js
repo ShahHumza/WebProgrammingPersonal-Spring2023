@@ -9,7 +9,7 @@ const app = express();
 const hostname = '127.0.0.1';
 const port = process.env.PORT || 3000;
 
-
+//CORS
 // Middleware
 app
   .use(express.json())
@@ -20,6 +20,8 @@ app
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
     next()
 })
+
+.use(parseAuthorizationHeader)
 
 app
     .get('/api/v1/', (req, res) => {

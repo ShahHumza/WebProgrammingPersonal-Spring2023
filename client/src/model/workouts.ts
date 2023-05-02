@@ -5,6 +5,7 @@ import  { api } from "./myFetch";
 
 
 export interface Workout {
+  username: string;
   id: number;
   name: string;
   duration: number;
@@ -29,3 +30,4 @@ export function deleteWorkout(user: string, name: string, duration: number){
   
   return api('workouts/deleteWorkout', {username: user, name: name, duration: duration})
 }
+
