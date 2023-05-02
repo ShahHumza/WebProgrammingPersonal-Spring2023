@@ -28,7 +28,7 @@ async function getAll(page=1, pageSize=30) {
 // Read the file
 const allWorkoutsJSON = fs.readFileSync(path.join(__dirname, "../data/workouts.json"), "utf-8");
 const allWorkoutsDataScraped = JSON.parse(allWorkoutsJSON);
-console.log(allWorkoutsDataScraped)
+//console.log(allWorkoutsDataScraped)
 
 async function insert(colName, dbScraped) {
   const col = await collection(colName);
@@ -40,9 +40,9 @@ async function insert(colName, dbScraped) {
 async function get() {
   //await insertWorkouts("allWorkouts", allWorkoutsDataScraped); // Insert some documents into the collection
   const col = await collection('allWorkouts');
-  console.log(col);
+  //console.log(col);
   const count = await col.countDocuments();
-  console.log(`Number of documents in collection: ${count}`);
+  //console.log(`Number of documents in collection: ${count}`);
   const items = await col.find().toArray();
   return items;
 }

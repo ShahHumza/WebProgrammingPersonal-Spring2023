@@ -1,11 +1,29 @@
 const fs = require("fs");
-const data = require('../data/workouts.json');
+// const data = require('../data/workouts.json');
+const jwt = require('jsonwebtoken');
 const { connect, ObjectId, DB_Name } = require('./mongo');
 
 const path = require('path');
 
 const COL_ALLWORKOUTS = 'users';
 
+
+const data = [
+    {
+        "name": "John Doe",
+        "email": "john@doe.com",
+        "password": "123456",
+        "photo": "https://robohash.org/hicveldicta.png?size=50x50&set=set1",
+        "role": "admin",
+    },
+    {
+        "name": "Jane Doe",
+        "email": "jane@doe.com",
+        "password": "123456",
+        "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
+        "role": "user",
+    },
+]
 
 async function collection(COLLECTION_NAME) {
   const db = await connect();
@@ -134,6 +152,58 @@ async function deleteItem(workout, page=1, pageSize=30) {
   return items;
 }
 
+
+//Login Tokens
+
+async function login(name, password) {
+    const col = await collection('allWorkouts');
+    const user = await col.findOne({ [name]: { $exists: true } });
+    
+    if (!user) {
+        throw new Error('User not found');
+    }
+    if (password !== password) {
+        throw new Error('Invalid password');
+    }
+
+    const cleanUser = { ...user, password: undefined };
+    const token = await generateTokenAsync(cleanUser, process.env.JWT_SECRET, '1d');
+
+    return { token };
+}
+
+async function oAuthLogin(provider, accessToken) {
+    // validate the access token
+    // if valid, return the user
+    // if not, create a new user
+    // return the user
+}
+
+function generateTokenAsync(user, secret, expiresIn) {
+    return new Promise( (resolve, reject) => {
+        jwt.sign(user, secret, { expiresIn }, (err, token) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(token);
+            }
+        });
+    });
+}
+
+function verifyTokenAsync(token, secret) {
+    return new Promise( (resolve, reject) => {
+        jwt.verify(token, secret, (err, user) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(user);
+            }
+        });
+    });
+}
+
+
 module.exports = {
   getByUser,
   getAll,
@@ -143,8 +213,9 @@ module.exports = {
   deleteItem,
   get,
   insert,
-
-
-
+  login,
+  oAuthLogin,
+  generateTokenAsync,
+  verifyTokenAsync,
 
 };

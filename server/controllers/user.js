@@ -1,9 +1,16 @@
 const express = require('express');
-const model = require('../models/workouts');
+const model = require('../models/user');
 const router = express.Router();
 
 router
 //change /:username => /
+.get("/", (req, res, next) => {
+  model.get()
+      .then(list => {
+          const data = { data: list, total: Object.keys(list).length, isSuccess: true };
+          res.send(data)
+      }).catch(next);
+})
 .get("/getWorkoutsTest", (req, res, next) => {
   model.get()
       .then(list => {
@@ -25,21 +32,6 @@ router
       res.status(500).send(data);
     });
 })
-// .get('/:username',(req, res) => {
-//   try {
-//     const username = req.params.username;
-//     // console.log(username)
-//     const list = model.getWorkouts(username);
-//     console.log(list)
-//     const data = { data: list, total: list.length, isSuccess: true };
-//     console.log(data)
-//     res.send(data);
-//   } catch (err) {
-//     console.error(err);
-//     const data = { error: err.message, isSuccess: false };
-//     res.status(500).send(data);
-//   }
-// })
 
 
 .get('/search/:q', (req, res) => {
@@ -101,4 +93,23 @@ router
     });
   })
 
+    //Login
+    .post('/login', (req, res, next) => {
+      console.log(req.body.pas) 
+        model.login(req.body.name, req.body.password)
+            .then(x => {
+                const data = { data: x, isSuccess: true };
+                res.send(data)
+            }).catch(next);
+    })
+        
+
+    .post('/oAuthLogin', (req, res, next) => {
+        model.oAuthLogin(req.body.provider, req.body.accessToken)
+                    .then(x => {
+                        const data = { data: x, isSuccess: true };
+                        res.send(data)
+                    }).catch(next);
+    })
+        
 module.exports = router;

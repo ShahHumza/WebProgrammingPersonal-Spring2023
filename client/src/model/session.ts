@@ -9,6 +9,7 @@ const session = reactive({
 
 export const Humza: User = {
   name: "Humza Shah",
+  password: "Hum123",
   role: "admin",
   friends: [],
   status: true,
@@ -35,12 +36,13 @@ const Tom: User = {
 export interface User {
   id?: number;
   name: string;
+  password?: string;
   email?: string;
   photo?: string;
   token?: string;
   role?: string;
-  friends: User[];
-  status: boolean;
+  friends?: User[];
+  status?: boolean;
   workouts: {
     date?: string;
     duration: number;
@@ -66,6 +68,7 @@ export function login(user: string) {
   if (user === "Humza Shah") {
     session.user = {
       name: "Humza Shah",
+      password: "Hum123",
       role: "admin",
       friends: [Tanner, Tom],
       status: true,
