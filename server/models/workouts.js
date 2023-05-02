@@ -30,14 +30,14 @@ const allWorkoutsJSON = fs.readFileSync(path.join(__dirname, "../data/workouts.j
 const allWorkoutsDataScraped = JSON.parse(allWorkoutsJSON);
 console.log(allWorkoutsDataScraped)
 
-async function insertWorkouts(colName, dbScraped) {
+async function insert(colName, dbScraped) {
   const col = await collection(colName);
   //const result = await col.insertMany(dbScraped);
   const result = await col.insertOne(dbScraped);//weird
   
 }
 
-async function getWorkoutsTest() {
+async function get() {
   //await insertWorkouts("allWorkouts", allWorkoutsDataScraped); // Insert some documents into the collection
   const col = await collection('allWorkouts');
   console.log(col);
@@ -47,7 +47,7 @@ async function getWorkoutsTest() {
   return items;
 }
 
-async function getWorkouts(username, page=1, pageSize=30) {
+async function getByUser(username, page=1, pageSize=30) {
   const col = await collection('allWorkouts');
   // console.log(col);
   const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
@@ -63,7 +63,7 @@ async function getWorkouts(username, page=1, pageSize=30) {
 
 
 
-function getWorkoutById(id) {
+function getById(id) {
   for (const username in data) {
     const workouts = data[username];
     const workout = workouts.find(w => w.id === id);
@@ -74,7 +74,7 @@ function getWorkoutById(id) {
   return null;
 }
 
-async function addWorkouts(workout, page=1, pageSize=30) {
+async function add(workout, page=1, pageSize=30) {
   const col = await collection('allWorkouts');
   const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
   // //const newWorkout = { username: user, name: name, duration: duration }
@@ -102,7 +102,7 @@ async function addWorkouts(workout, page=1, pageSize=30) {
   return it;
 }
 
-function updateWorkout(workout) {
+function update(workout) {
   const username = workout.username;
   if (data[username]) {
     const index = data[username].findIndex(w => w.id === workout.id);
@@ -110,7 +110,7 @@ function updateWorkout(workout) {
   }
 }
 
-async function deleteWorkout(workout, page=1, pageSize=30) {
+async function deleteItem(workout, page=1, pageSize=30) {
   const col = await collection('allWorkouts');
   const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
   
@@ -140,14 +140,14 @@ async function deleteWorkout(workout, page=1, pageSize=30) {
 }
 
 module.exports = {
-  getWorkouts,
+  getByUser,
   getAll,
-  getWorkoutById,
-  addWorkouts,
-  updateWorkout,
-  deleteWorkout,
-  getWorkoutsTest,
-  insertWorkouts,
+  getById,
+  add,
+  update,
+  deleteItem,
+  get,
+  insert,
 
 
 
