@@ -29,6 +29,7 @@
       // data.data.push({ name, duration });
     });
   }
+  
 
   onMounted(async () => {
     getUserWorkouts();""
@@ -38,8 +39,55 @@
 
 <template>
   <main class="work">
-    <h1 class="title">
+
+    <div class="box">
+  <h1 class="title is-4">Add to Workout Log</h1>
+  <hr>
+  <form>
+    <div class="field">
+      <label class="label">Exercise</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="e.g. Bench Press" v-model="newWorkout.name">
+      </div>
+    </div>
+    <!-- <div class="field">
+      <label class="label">Weight</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="e.g. 135 lbs">
+      </div>
+    </div> -->
+    <div class="field">
+      <label class="label">Duration</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="e.g. 10" v-model="newWorkout.duration">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Date</label>
+      <div class="control">
+        <input class="input" type="date">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Notes</label>
+      <div class="control">
+        <textarea class="textarea" placeholder="e.g. Felt great today"></textarea>
+      </div>
+    </div>
+    <div class="field">
       <div>
+        <button type="button" class="button is-primary" @click="addToWorkouts(newWorkout.name, newWorkout.duration)">Add</button>
+      </div>
+      <!-- <div class="control">
+        <button class="button is-link">Cancel</button>
+      </div> -->
+    </div>
+  </form>
+</div>
+
+
+    <h1 class="title">
+      <!-- <div>
         <label>Workout Name:</label>
         <input type="text" v-model="newWorkout.name">
       </div>
@@ -47,12 +95,12 @@
         <label>Workout Duration(minutes):</label>
         <input type="text" v-model="newWorkout.duration">
       </div>
-      <!-- <div>
+      <div>
             <label>Workout Date:</label>
             <input type="text" v-model="newWorkout.date">
-          </div> -->
+          </div> 
           <button @click="addToWorkouts(newWorkout.name, newWorkout.duration)">Add Workout</button>
-      <br>
+      <br>-->
       <ul>
         <li v-for="(workout, index) in workouts" :key="workout.id">
           <div class="notification is-primary">
@@ -61,6 +109,7 @@
           </div>
         </li>
       </ul>
+      
     </h1>
   </main>
 </template>
