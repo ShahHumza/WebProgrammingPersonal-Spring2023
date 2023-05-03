@@ -98,7 +98,7 @@ async function seed() {
 async function login(email, password) {
     const col = await collection();
     const user = await col.findOne({ email });
-    console.log("User: "+user)
+    // console.log("User: "+user)
     
     if (!user) {
         throw new Error('User not found');
@@ -106,7 +106,6 @@ async function login(email, password) {
     if (user.password !== password) {
         throw new Error('Invalid password');
     }
-    console.log("h")
 
     const cleanUser = { ...user, password: undefined };
     const token = await generateTokenAsync(cleanUser, '1d');

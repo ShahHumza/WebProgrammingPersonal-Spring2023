@@ -56,9 +56,8 @@ export interface User {
     name: string;
   }[];
   pfp: string;
+  
 }
-
-
 export function api(url: string, data?: any, method?: string, headers?: any) {
   session.isLoading = true;
 
@@ -83,9 +82,6 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
 }
 
 export function useSession() {
-  while (session == null) {
-    console.log("waiting for session");
-  }
   return session;
 }
 
@@ -94,15 +90,48 @@ export function useUser() {
   return username;
 }
 
-export function loginModel() {
-  const router = useRouter();
+export function login(user: string, password: string) {
 
+  if (user === "Humza Shah") {
+    session.user = {
+      name: "Humza Shah",
+      email: "Hum@101",
+      password: "Hum123",
+      role: "admin",
+      friends: [Tanner, Tom],
+      status: true,
+      workouts: workoutData[user],
+      pfp: "C:\Users\humza\OneDrive\Desktop\Web ClassPersonal\WebProgrammingPersonal-Spring2023\client\src\assets\ProfilePictures\Patrick-PNG-File.png",
+    }
+
+  } else if (user === "Tanner Festa") {
+    session.user = {
+      name: "Tanner Festa",
+      friends: [Humza, Tom],
+      status: false,
+      workouts: workoutData[user],
+      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
+    };
+  } else if (user === "Thomas Coffey") {
+    session.user = {
+      name: "Thomas Coffey",
+      friends: [Humza, Tanner],
+      status: true,
+      workouts: workoutData[user],
+      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
+    };
+  } else {
+    console.error("Invalid user selected");
+  }
+
+  const router = useRouter();
+  console.log()
   return async function () {
     const response = await api("users/login", {
-      "email": "john@doe.com",
-      "password": "123456"
+      "email": session.user?.email,
+      "password": password
     });
-
+    
     session.user = response.data.user;
     if (!session.user) {
       // addMessage("User not found", "danger");
@@ -124,44 +153,6 @@ export function loginModel() {
 //   })
 // }
 
-export async function login(email: string, password: string) {
-  const router = useRouter();
-   
-    return async function() {
-      const response = await api("users/login", {
-            "email": "john@doe.com",
-            "password": "123456"
-      })
-      session.user = response.data.user;
-      if (!session.user) {
-        addMessage("User not found", "danger");
-        return;
-      }
-      session.user.token = response.data.token;
-
-      router.push(session.redirectUrl ?? "/");
-      session.redirectUrl = null;
-
-    }
-
-
-  try {
-    console.log(email+"  "+password)
-    const response = await api('users/login', {
-      email,
-      password,
-    });
-    console.log(response)
-    session.user = response?.data?.user;
-    session.user!.token = response?.data?.token;
-    //This line below PUSH
-    router.push(session.redirectUrl ?? "/");
-    session.redirectUrl = null;
-  } catch (error) {
-    console.error(error);
-    // Add the opening brace here
-  }
-}
 
 
 export function addMessage(msg: string, type: "success" | "danger" | "warning" | "info") {
