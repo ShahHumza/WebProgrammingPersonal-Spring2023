@@ -126,6 +126,25 @@ export function loginModel() {
 
 export async function login(email: string, password: string) {
   const router = useRouter();
+   
+    return async function() {
+      const response = await api("users/login", {
+            "email": "john@doe.com",
+            "password": "123456"
+      })
+      session.user = response.data.user;
+      if (!session.user) {
+        addMessage("User not found", "danger");
+        return;
+      }
+      session.user.token = response.data.token;
+
+      router.push(session.redirectUrl ?? "/");
+      session.redirectUrl = null;
+
+    }
+
+
   try {
     console.log(email+"  "+password)
     const response = await api('users/login', {
@@ -144,6 +163,14 @@ export async function login(email: string, password: string) {
   }
 }
 
+
+export function addMessage(msg: string, type: "success" | "danger" | "warning" | "info") {
+  console.log({msg, type});
+  session.messages.push({
+      msg,
+      type,
+  })
+}
 
 export function login1(user: string) {
 
