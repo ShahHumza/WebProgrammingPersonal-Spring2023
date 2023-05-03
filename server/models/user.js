@@ -97,9 +97,9 @@ async function seed() {
 
 async function login(email, password) {
     const col = await collection();
-    const user = await col.findOne({ email });
+    const user = await col.findOne({email: email});
     // console.log("User: "+user)
-    
+    // console.log('user:', user);
     if (!user) {
         throw new Error('User not found');
     }
@@ -143,8 +143,6 @@ function verifyTokenAsync(token) {
         });
     });
 }
-
-
 
 module.exports = {
     getAll,

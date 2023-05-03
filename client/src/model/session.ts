@@ -4,6 +4,7 @@ import workoutData from "../data/workouts.json";
 
 import * as myFetch from "./myFetch";
 
+
 const session = reactive({
   user: null as User | null,
   isLoading: false,
@@ -90,12 +91,12 @@ export function useUser() {
   return username;
 }
 
-export function login(user: string, password: string) {
+export async function login(user: string, password: string) {
 
   if (user === "Humza Shah") {
     session.user = {
       name: "Humza Shah",
-      email: "Hum@101",
+      email: "H@101",
       password: "Hum123",
       role: "admin",
       friends: [Tanner, Tom],
@@ -126,33 +127,29 @@ export function login(user: string, password: string) {
   // console.log(session.user)
   const router = useRouter();
   // console.log()
-  return async function () {
+
+  // tokens.loginRetrieveToken().then(() => {
+  //   tokens.getters.token.then(
+
+  try {
+    // console.log(session.user)
     const response = await api("users/login", {
       "email": session.user?.email,
-      "password": password
-    });
+      "password": "123456"
+  });
+  console.log(response)
     
-    session.user = response.data.user;
-    if (!session.user) {
-      // addMessage("User not found", "danger");
-      return;
-    }
-    console.log(session.user)
-    session.user.token = response.data.token;
 
-    router.push(session.redirectUrl ?? "/");
-    session.redirectUrl = null;
+  router.push(session.redirectUrl ?? "/");
+  session.redirectUrl = null;
+  } catch (error) {
+    // console.error(error);
+    console.log("User not found")
+    // addMessage("User not found", "danger");
+    return;
   }
 
 }
-
-// export function addMessage(msg: string, type: "success" | "danger" | "warning" | "info") {
-//   console.log({msg, type});
-//   session.messages.push({
-//       msg,
-//       type,
-//   })
-// }
 
 
 
@@ -164,40 +161,7 @@ export function addMessage(msg: string, type: "success" | "danger" | "warning" |
   })
 }
 
-export function login1(user: string) {
 
-
-  if (user === "Humza Shah") {
-    session.user = {
-      name: "Humza Shah",
-      password: "Hum123",
-      role: "admin",
-      friends: [Tanner, Tom],
-      status: true,
-      workouts: workoutData[user],
-      pfp: "C:\Users\humza\OneDrive\Desktop\Web ClassPersonal\WebProgrammingPersonal-Spring2023\client\src\assets\ProfilePictures\Patrick-PNG-File.png",
-    }
-
-  } else if (user === "Tanner Festa") {
-    session.user = {
-      name: "Tanner Festa",
-      friends: [Humza, Tom],
-      status: false,
-      workouts: workoutData[user],
-      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-    };
-  } else if (user === "Thomas Coffey") {
-    session.user = {
-      name: "Thomas Coffey",
-      friends: [Humza, Tanner],
-      status: true,
-      workouts: workoutData[user],
-      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-    };
-  } else {
-    console.error("Invalid user selected");
-  }
-}
 
 export function useLogout() {
   const router = useRouter();
