@@ -123,9 +123,9 @@ export function login(user: string, password: string) {
   } else {
     console.error("Invalid user selected");
   }
-
+  // console.log(session.user)
   const router = useRouter();
-  console.log()
+  // console.log()
   return async function () {
     const response = await api("users/login", {
       "email": session.user?.email,
@@ -137,6 +137,7 @@ export function login(user: string, password: string) {
       // addMessage("User not found", "danger");
       return;
     }
+    console.log(session.user)
     session.user.token = response.data.token;
 
     router.push(session.redirectUrl ?? "/");

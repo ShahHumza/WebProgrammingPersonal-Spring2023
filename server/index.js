@@ -17,11 +17,11 @@ app
 
     .use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*')
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS')
         next()
     })
-
+    
     .use(parseAuthorizationHeader)
 
 
@@ -30,9 +30,9 @@ app
     .get('/api/v1/', (req, res) => {
         res.send('Hello World! From Express')
     })
-    .use('/api/v1/workouts', requireLogin(), workouts)
+    .use('/api/v1/workouts', workouts)
     //.use('/api/v1/workouts', workouts)
-    .use('/api/v1/users', users)
+    .use('/api/v1/users', requireLogin(), users)
     
 // Catch all
 app.get('*', (req, res) => {
