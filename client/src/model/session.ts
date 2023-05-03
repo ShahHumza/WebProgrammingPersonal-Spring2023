@@ -93,37 +93,38 @@ export function useUser() {
 
 export async function login(user: string, password: string) {
 
-  if (user === "Humza Shah") {
-    session.user = {
-      name: "Humza Shah",
-      email: "H@101",
-      password: "Hum123",
-      role: "admin",
-      friends: [Tanner, Tom],
-      status: true,
-      workouts: workoutData[user],
-      pfp: "C:\Users\humza\OneDrive\Desktop\Web ClassPersonal\WebProgrammingPersonal-Spring2023\client\src\assets\ProfilePictures\Patrick-PNG-File.png",
-    }
+  // if (user === "Humza Shah") {
+  //   session.user = {
+  //     name: "Humza Shah",
+  //     email: "H@101",
+  //     password: "Hum123",
+  //     role: "admin",
+  //     friends: [Tanner, Tom],
+  //     status: true,
+  //     workouts: workoutData[user],
+  //     pfp: "C:\Users\humza\OneDrive\Desktop\Web ClassPersonal\WebProgrammingPersonal-Spring2023\client\src\assets\ProfilePictures\Patrick-PNG-File.png",
+  //   }
+    
 
-  } else if (user === "Tanner Festa") {
-    session.user = {
-      name: "Tanner Festa",
-      friends: [Humza, Tom],
-      status: false,
-      workouts: workoutData[user],
-      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-    };
-  } else if (user === "Thomas Coffey") {
-    session.user = {
-      name: "Thomas Coffey",
-      friends: [Humza, Tanner],
-      status: true,
-      workouts: workoutData[user],
-      pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-    };
-  } else {
-    console.error("Invalid user selected");
-  }
+  // } else if (user === "Tanner Festa") {
+  //   session.user = {
+  //     name: "Tanner Festa",
+  //     friends: [Humza, Tom],
+  //     status: false,
+  //     workouts: workoutData[user],
+  //     pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
+  //   };
+  // } else if (user === "Thomas Coffey") {
+  //   session.user = {
+  //     name: "Thomas Coffey",
+  //     friends: [Humza, Tanner],
+  //     status: true,
+  //     workouts: workoutData[user],
+  //     pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
+  //   };
+  // } else {
+  //   console.error("Invalid user selected");
+  // }
   // console.log(session.user)
   const router = useRouter();
   // console.log()
@@ -134,22 +135,36 @@ export async function login(user: string, password: string) {
   try {
     // console.log(session.user)
     const response = await api("users/login", {
-      "email": session.user?.email,
+      "email": user,
       "password": "123456"
   });
-  console.log(response)
-    
-
-  router.push(session.redirectUrl ?? "/");
-  session.redirectUrl = null;
+  // console.log(user)
+    // const re = await api("workouts/Humza Shah", {
+    //   "date": "2021-04-20",
+    //   "duration": 30,
+    //   "name": "Running"
+    // })
+    // session.user?.token = response.data.token;
+    session.user = response.data.user;
+    console.log(session)
+    console.log(session.user)
+    console.log("hi")
+ 
+  // console.log(re)
+  // session.user.token = response.data.token;
+  // router.push(session.redirectUrl ?? "/"); //this line broken
+  // console.log("after")
+  // session.redirectUrl = null;
   } catch (error) {
-    // console.error(error);
-    console.log("User not found")
+    console.error(error);
+    console.log("Error in session.ts")
     // addMessage("User not found", "danger");
     return;
   }
 
 }
+
+
 
 
 

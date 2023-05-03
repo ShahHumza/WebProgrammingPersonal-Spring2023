@@ -116,36 +116,7 @@
 
 
 <style>
-.title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.title>div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.title>div>label {
-  margin-right: 1rem;
-}
-
-.title button {
-  margin-top: 1rem;
-}
-
-.title ul {
-  margin-top: 1rem;
-  list-style: none;
-  padding-left: 0;
-}
-
-.title li {
-  margin-bottom: 0.5rem;
-}
 
 @media (min-width: 512px) {
 
