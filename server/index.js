@@ -38,8 +38,8 @@ app
     .get('/api/v1/', (req, res) => {
         res.send('Hello World! From Express')
     })
-    .use('/api/v1/workouts',requireLogin(), workouts)
-    // .use('/api/v1/workouts', workouts)
+    //.use('/api/v1/workouts',requireLogin(), workouts)
+     .use('/api/v1/workouts', workouts)
     .use('/api/v1/users', users)
     
 // Catch all

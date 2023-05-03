@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { connect, ObjectId } = require('./mongo');
 const { env } = require('process');
 
-const COLLECTION_NAME = 'users';
+const COLLECTION_NAME = 'allWorkouts';
 
 const data = [
     {
@@ -12,6 +12,13 @@ const data = [
         "password": "123456",
         "photo": "https://robohash.org/hicveldicta.png?size=50x50&set=set1",
         "role": "admin",
+        "workouts": [
+            {
+                "name": "Workout 1",
+                "duration": "10",
+
+            }
+        ]
     },
     {
         "name": "Jane Doe",
