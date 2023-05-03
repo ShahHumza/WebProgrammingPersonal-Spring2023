@@ -138,23 +138,15 @@ export async function login(user: string, password: string) {
       "email": user,
       "password": "123456"
   });
-  // console.log(user)
-    // const re = await api("workouts/Humza Shah", {
-    //   "date": "2021-04-20",
-    //   "duration": 30,
-    //   "name": "Running"
-    // })
-    // session.user?.token = response.data.token;
     session.user = response.data.user;
+    console.log(user)
     console.log(session)
     console.log(session.user)
     console.log("hi")
  
-  // console.log(re)
-  // session.user.token = response.data.token;
-  // router.push(session.redirectUrl ?? "/"); //this line broken
-  // console.log("after")
-  // session.redirectUrl = null;
+
+  // router.push(session.redirectUrl ?? "/");
+  //       session.redirectUrl = null;
   } catch (error) {
     console.error(error);
     console.log("Error in session.ts")

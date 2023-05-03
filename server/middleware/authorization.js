@@ -16,10 +16,9 @@ module.exports = {
         }
     },
     requireLogin(requireAdmin = false) {
-        const t = true;
         return (req, res, next) => {
-            //req.user
-            if (t) {
+            
+            if (req.user) {
                 if (req.user.role !== 'admin' && !requireAdmin) {
                     next({ code: 403, message: 'This resource is admin only' });
                 } else {
