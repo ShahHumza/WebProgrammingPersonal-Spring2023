@@ -5,10 +5,10 @@ import  { api } from "./myFetch";
 
 
 export interface Workout {
-  username: string;
-  id: number;
-  name: string;
+  date: string;
+  id?: number;
   duration: number;
+  name: string;
 }
 
 export function getWorkouts(name: string): Promise<DataListEnvelope<Workout>>{
@@ -17,12 +17,12 @@ export function getWorkouts(name: string): Promise<DataListEnvelope<Workout>>{
 
 //name perameter is the workout name
 export function addWorkouts(user: string, name: string, duration: number){
-  const newWorkout = { username: user, name: name, duration: duration }
+  const newWorkout = { date: "2022-02-02", name: name, duration: duration }
 
-  // console.log(newWorkout);
+  console.log(user);
   // workouts.value.push(newWorkout)
 
-  return api('users', newWorkout)
+  return api('users/addWorkout/' + user, newWorkout)
 }
 
 

@@ -17,7 +17,8 @@ const session = reactive({
 
 export const Humza: User = {
   name: "Humza Shah",
-  password: "Hum123",
+  email: "H@101",
+  password: "123456",
   role: "admin",
   friends: [],
   status: true,
@@ -27,6 +28,8 @@ export const Humza: User = {
 
 const Tanner: User = {
   name: "Tanner Festa",
+  email: "john@doe.com",
+  password: "123456",
   friends: [],
   status: false,
   workouts: [],
@@ -87,50 +90,12 @@ export function useSession() {
 }
 
 export function useUser() {
-  const username = session.user?.name ?? "Unknown User";
+  const username = session.user?.email ??"Unknown User";
   return username;
 }
 
 export async function login(user: string, password: string) {
-
-  // if (user === "Humza Shah") {
-  //   session.user = {
-  //     name: "Humza Shah",
-  //     email: "H@101",
-  //     password: "Hum123",
-  //     role: "admin",
-  //     friends: [Tanner, Tom],
-  //     status: true,
-  //     workouts: workoutData[user],
-  //     pfp: "C:\Users\humza\OneDrive\Desktop\Web ClassPersonal\WebProgrammingPersonal-Spring2023\client\src\assets\ProfilePictures\Patrick-PNG-File.png",
-  //   }
-    
-
-  // } else if (user === "Tanner Festa") {
-  //   session.user = {
-  //     name: "Tanner Festa",
-  //     friends: [Humza, Tom],
-  //     status: false,
-  //     workouts: workoutData[user],
-  //     pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-  //   };
-  // } else if (user === "Thomas Coffey") {
-  //   session.user = {
-  //     name: "Thomas Coffey",
-  //     friends: [Humza, Tanner],
-  //     status: true,
-  //     workouts: workoutData[user],
-  //     pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-  //   };
-  // } else {
-  //   console.error("Invalid user selected");
-  // }
-  // console.log(session.user)
   const router = useRouter();
-  // console.log()
-
-  // tokens.loginRetrieveToken().then(() => {
-  //   tokens.getters.token.then(
 
   try {
     // console.log(session.user)

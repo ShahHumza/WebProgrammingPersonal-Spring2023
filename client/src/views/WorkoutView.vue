@@ -24,7 +24,7 @@
   // }
 
   async function getUserWorkouts() {
-    getWorkouts(username || '').then((data) => {
+    getWorkouts(userId).then((data) => {
       workouts.value = data.data;
       // console.log(data.data);
       // data.data.push({ name, duration });
