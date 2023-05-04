@@ -78,6 +78,13 @@ async function addWorkout(email, workoutData) {
     return result.modifiedCount > 0;
   }
 
+  async function deleteWorkout(email, workoutName) {
+    const col = await collection('users');
+    const result = await col.updateOne({ email: email }, { $pull: { workouts: { name: workoutName } } });
+    return result.modifiedCount > 0;
+}
+  
+
 async function update(item) {
 
     console.log(item);
@@ -174,6 +181,7 @@ module.exports = {
     addWorkout,
     update,
     deleteItem,
+    deleteWorkout,
     search,
     seed,
     login,

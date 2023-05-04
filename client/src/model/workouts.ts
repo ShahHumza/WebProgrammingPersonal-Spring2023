@@ -1,4 +1,3 @@
-
 import { ref } from "vue";
 import type { DataEnvelope, DataListEnvelope } from "./myFetch";
 import  { api } from "./myFetch";
@@ -26,8 +25,8 @@ export function addWorkouts(user: string, name: string, duration: number){
 }
 
 
-// export function deleteWorkout(user: string, name: string, duration: number){
+export function deleteWorkout(user: string, name: string, duration: number){
   
-//   return api('users/deleteWorkout', {username: user, name: name, duration: duration})
-// }
+  return api('users/deleteWorkout/' + user, {user: name, name: name})
+}
 

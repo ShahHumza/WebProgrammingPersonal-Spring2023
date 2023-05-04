@@ -64,7 +64,7 @@ export interface User {
 }
 export function api(url: string, data?: any, method?: string, headers?: any) {
   session.isLoading = true;
-
+  console.log(session.user?.token)
   if(session.user?.token){
       headers = {
           "Authorization": `Bearer ${session.user.token}`,
@@ -95,9 +95,10 @@ export function useUser() {
 }
 
 export async function login(user: string, password: string) {
-  const router = useRouter();
-
+  
   try {
+    const router = useRouter();
+    console.log("user" + user)
     // console.log(session.user)
     const response = await api("users/login", {
       "email": user,
@@ -110,8 +111,8 @@ export async function login(user: string, password: string) {
     console.log("hi")
  
 
-  // router.push(session.redirectUrl ?? "/");
-  //       session.redirectUrl = null;
+    // router.push(session.redirectUrl ?? "/");
+    // session.redirectUrl = null;
   } catch (error) {
     console.error(error);
     console.log("Error in session.ts")

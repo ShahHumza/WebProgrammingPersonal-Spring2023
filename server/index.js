@@ -40,7 +40,7 @@ app
     })
     .use('/api/v1/workouts',requireLogin(), workouts)
     //.use('/api/v1/workouts', workouts)
-    .use('/api/v1/users', users)
+    .use('/api/v1/users',  users)
     
 // Catch all
 app.get('*', (req, res) => {
