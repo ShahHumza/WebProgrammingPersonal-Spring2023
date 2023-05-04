@@ -1,4 +1,27 @@
 <script setup lang="ts">
+    import { onMounted, ref } from 'vue';
+    import { useSession, useUser} from '@/model/session';
+    import type { Workout } from "@/model/workouts";
+    import { countWorkout } from "@/model/workouts";
+
+
+    const session = useSession();
+    const newWorkout = ref({ date: '', duration: 0, name: '' });
+    const workouts = ref<Workout[]>([]);
+
+    const user = session.user;
+
+    const userId = useUser()
+    console.log(user?.email)
+
+    async function countAllWorkout() {
+        if(user?.email != null)
+        {
+            await countWorkout(user?.email);
+        }
+    
+  }
+
 
 </script>
 
@@ -15,7 +38,7 @@
                     <div class="level-right">
                         <div class="level-item">
                             <button type="button" class="button is-small">
-                                March 8, 2017 - April 6, 2017
+                                January 23, 2023 - May 4, 2023
                             </button>
                         </div>
                     </div>
@@ -24,25 +47,31 @@
                 <div class="columns is-multiline">
                     <div class="column">
                         <div class="box">
-                            <div class="heading">All Time</div>
-                            <div class="title">56,950</div>
+                            <div class="heading">All Workouts</div>
+                            <div class="title">
+                                25
+                                <!-- {{countAllWorkout()}} -->
+
+
+
+                            </div>
                             <div class="level">
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Sales $</div>
-                                        <div class="title is-5">250,000</div>
+                                        <div class="heading">Thats</div>
+                                        <div class="title is-5"><br></div>
                                     </div>
                                 </div>
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Overall $</div>
-                                        <div class="title is-5">750,000</div>
+                                        <div class="heading"> </div>
+                                        <div class="title is-5"><br></div>
                                     </div>
                                 </div>
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Sales %</div>
-                                        <div class="title is-5">25%</div>
+                                        <div class="heading">Crazy</div>
+                                        <div class="title is-5"><br></div>
                                     </div>
                                 </div>
                             </div>
@@ -50,25 +79,25 @@
                     </div>
                     <div class="column">
                         <div class="box">
-                            <div class="heading">This Month</div>
+                            <div class="heading">All Time Calories Burned</div>
                             <div class="title">55% / 45%</div>
                             <div class="level">
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Rev Prod $</div>
-                                        <div class="title is-5">30%</div>
+                                        <div class="heading">Great</div>
+                                        <div class="title is-5"> <br></div>
                                     </div>
                                 </div>
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Rev Serv $</div>
-                                        <div class="title is-5">25%</div>
+                                        <div class="heading"> </div>
+                                        <div class="title is-5"> <br></div>
                                     </div>
                                 </div>
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Exp %</div>
-                                        <div class="title is-5">45%</div>
+                                        <div class="heading">Job</div>
+                                        <div class="title is-5"><br> </div>
                                     </div>
                                 </div>
                             </div>
@@ -76,25 +105,25 @@
                     </div>
                     <div class="column">
                         <div class="box">
-                            <div class="heading">This Week</div>
+                            <div class="heading">All Time Weight Lost</div>
                             <div class="title">78% &uarr;</div>
                             <div class="level">
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Positive</div>
-                                        <div class="title is-5">1560</div>
+                                        <div class="heading">Your</div>
+                                        <div class="title is-5"><br></div>
                                     </div>
                                 </div>
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Negative</div>
-                                        <div class="title is-5">368</div>
+                                        <div class="heading">a</div>
+                                        <div class="title is-5"><br></div>
                                     </div>
                                 </div>
                                 <div class="level-item">
                                     <div class="">
-                                        <div class="heading">Pos/Neg %</div>
-                                        <div class="title is-5">77% / 23%</div>
+                                        <div class="heading">Beast</div>
+                                        <div class="title is-5"><br></div>
                                     </div>
                                 </div>
                             </div>

@@ -12,6 +12,7 @@
     min-height: 100vh;
     display: flex;
     text-align: left;
+    color:rgb(0, 0, 0);
 
     /* This alligns it */
     position: relative;
@@ -20,11 +21,10 @@
     transition: .3s ease;
   }
   .aboutPageText{
-    margin-top: -300px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-top: 100px;
+    margin-left: -200px;
     font-size: 20px;
-
+    font-weight: bold;
   }
 }
 </style>

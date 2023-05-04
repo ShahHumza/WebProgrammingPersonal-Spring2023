@@ -74,7 +74,7 @@ POST http://localhost:3000/api/v1/workouts/seed
 POST http://localhost:3000/api/v1/users/seed
 
 ###
-GET http://localhost:3000/api/v1/users/getWorkouts/H@101
+GET http://localhost:3000/api/v1/users/totalWorkouts/H@101
 Authorization: Bearer {{login.response.body.data.token}}
 
 ###

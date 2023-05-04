@@ -15,6 +15,10 @@
 </template>
 
 <style scoped>
- 
+ .t, .titles, .subtitle{
+    color:black;
+    font-weight: bold;
+    font-size: 30px;
+ }
 
 </style>

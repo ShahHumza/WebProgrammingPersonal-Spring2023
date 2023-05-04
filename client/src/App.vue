@@ -11,7 +11,7 @@ import NavBar from './components/NavBar.vue';
 <template>
     <div class="backgroundPicture">
       <NavBar />
-      <BDashBoard />
+      <!-- <BDashBoard /> -->
   
       <div class="container">
         <RouterView />
@@ -20,12 +20,12 @@ import NavBar from './components/NavBar.vue';
   </template>
   
   <style scoped>
-    /* .backgroundPicture {
+     .backgroundPicture {
       background-image: url('https://phantom-marca.unidadeditorial.es/746e69f29df0fa7da1f9df1cffc2af10/crop/0x20/1499x861/resize/1320/f/jpg/assets/multimedia/imagenes/2022/01/12/16419960151339.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       min-height: 10vh;
-    } */
+     }
   </style>
   
   

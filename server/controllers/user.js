@@ -4,7 +4,7 @@ const { requireLogin } = require('../middleware/authorization');
 const router = express.Router();
 
 router
-    .get('/', requireLogin(true),(req, res, next) => {
+    .get('/',(req, res, next) => {
         model.getAll(+req.query.page, +req.query.pageSize)
             .then(list => {
                 const data = { data: list.items, total: list.total, isSuccess: true };
@@ -13,7 +13,7 @@ router
     })
 
     //get Workouts
-    .get("/getWorkouts/:email", requireLogin(true), (req, res, next) => {
+    .get("/getWorkouts/:email", (req, res, next) => {
         const email = req.params.email;
         model.get(email)
           .then(workouts => {
@@ -26,7 +26,21 @@ router
           }).catch(next);
       })
 
-    .get('/search/:q' , requireLogin(true), (req, res, next) => {
+      //get Total Workouts number
+    .get("/totalWorkouts/:email", (req, res, next) => {
+        const email = req.params.email;
+        model.count(email)
+          .then(workouts => {
+            if (workouts) {
+              const data = { data: workouts, total: Object.keys(workouts).length, isSuccess: true };
+              res.send(data);
+            } else {
+              res.status(404).send('User not found');
+            }
+          }).catch(next);
+      })
+
+    .get('/search/:q' , (req, res, next) => {
 
         model.search(req.params.q, +req.query.page, +req.query.pageSize)
             .then(list => {
@@ -36,7 +50,7 @@ router
         
     })
 
-    .get('/:id' , requireLogin(true), (req, res, next) => {
+    .get('/:id' , (req, res, next) => {
 
         model.getById(req.params.id)
             .then(x => {
@@ -46,7 +60,7 @@ router
 
     })
 
-    .post('/', requireLogin(true), (req, res, next) => {
+    .post('/', (req, res, next) => {
 
         model.add(req.body)
             .then(x => {
@@ -57,7 +71,7 @@ router
     })
 
     //add Workouts
-    .post('/addWorkout/:email', requireLogin(true), (req, res, next) => {
+    .post('/addWorkout/:email', (req, res, next) => {
         const { email } = req.params;
         const workoutData = req.body;
           
@@ -69,7 +83,7 @@ router
           .catch(next);
       })
     //delete Workouts
-    .post('/deleteWorkout/:email', requireLogin(true), (req, res, next) => {
+    .post('/deleteWorkout/:email', (req, res, next) => {
         const { email } = req.params;
         const workoutName = req.body.name;
         
@@ -82,7 +96,7 @@ router
     })
     
 
-    .patch('/' , requireLogin(true), (req, res, next) => {
+    .patch('/' , (req, res, next) => {
 
         model.update(req.body)
             .then(x => {
@@ -92,7 +106,7 @@ router
 
     })
 
-    .delete('/:id' , requireLogin(true), (req, res, next) => {
+    .delete('/:id' , (req, res, next) => {
 
         model.deleteItem(req.params.id)
             .then(x => {
@@ -101,7 +115,7 @@ router
             }).catch(next);
     })
 
-    .post('/seed' , requireLogin(), (req, res, next) => {
+    .post('/seed' , (req, res, next) => {
         model.seed()
             .then(x => {
                 const data = { data: x, isSuccess: true };

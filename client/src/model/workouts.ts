@@ -30,3 +30,8 @@ export function deleteWorkout(user: string, name: string, duration: number){
   return api('users/deleteWorkout/' + user, {user: name, name: name})
 }
 
+export function countWorkout(user: string){
+  
+  return api('users/totalWorkouts/' + user)
+}
+

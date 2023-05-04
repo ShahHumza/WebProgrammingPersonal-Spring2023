@@ -64,7 +64,8 @@
 
 <style scoped>
 .section{
-    z-index: 1;
-    position: relative;
+    /* z-index: 1;
+    position: relative; */
+    /* background-color: aqua; */
 }
 </style>

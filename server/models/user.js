@@ -44,11 +44,22 @@ async function collection() {
 async function get(email) {
     const col = await collection('users');
     const user = await col.findOne({ email: email });
+    console.log(user.workouts.length)//amount of workouts
     if (!user) {
       return null;
     }
     return user.workouts;
   }
+
+async function count(email) {
+    const col = await collection('users');
+    const user = await col.findOne({ email: email });
+    // console.log(user.workouts.length)//amount of workouts
+    if (!user) {
+      return null;
+    }
+    return user.workouts.length;
+}
 
 async function getAll(page = 1, pageSize = 30) {
     const col = await collection();
@@ -177,6 +188,7 @@ module.exports = {
     get,
     getAll,
     getById,
+    count,
     add,
     addWorkout,
     update,

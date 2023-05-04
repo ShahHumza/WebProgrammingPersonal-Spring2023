@@ -17,7 +17,7 @@ import LoginBadge from './LoginBadge.vue';
     <nav class="navbar is-primary">
         <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="https://bulma.io">
+          <a class="navbar-item" href="">
             
             <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="22" height="22" />
             
@@ -33,10 +33,33 @@ import LoginBadge from './LoginBadge.vue';
           <div class="navbar-start">
 
             <RouterLink to="/" class="navbar-item">Home</RouterLink>
-            <RouterLink to="/about" class="navbar-item">About</RouterLink>
+            
             <!-- <RouterLink to="/products" class="navbar-item">Products</RouterLink> -->
 
 
+            
+            <RouterLink to="/about" class="navbar-item">About</RouterLink>
+            <RouterLink to="/friends" class="navbar-item">Friends</RouterLink>
+            <RouterLink to="/admin" class="navbar-item">Admin</RouterLink>
+          
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="">
+                Fitness
+              </a>
+              <div class="navbar-dropdown">
+                <RouterLink class="navbar-item" to="/workouts">
+                  Workouts
+                </RouterLink>
+                <RouterLink class="navbar-item" to="/calories">
+                  Calorie Tracker
+                </RouterLink>
+                <RouterLink class="navbar-item" to="/weight">
+                  Weight Tracker
+                </RouterLink>
+                
+              </div>
+            </div>
+            
             
           </div>
       
@@ -55,10 +78,5 @@ import LoginBadge from './LoginBadge.vue';
 
 
 <style scoped>
-    .quantity-tag {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        border-radius: 1rem;
-    }
+    
 </style>
