@@ -1,6 +1,5 @@
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
-import workoutData from "../data/workouts.json";
 
 import * as myFetch from "./myFetch";
 
@@ -15,34 +14,6 @@ const session = reactive({
   redirectUrl: null as string | null,
 })
 
-export const Humza: User = {
-  name: "Humza Shah",
-  email: "H@101",
-  password: "123456",
-  role: "admin",
-  friends: [],
-  status: true,
-  workouts: [],
-  pfp: "/assets/ProfilePictures/Patrick-PNG-File.png",
-};
-
-const Tanner: User = {
-  name: "Tanner Festa",
-  email: "john@doe.com",
-  password: "123456",
-  friends: [],
-  status: false,
-  workouts: [],
-  pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-};
-
-const Tom: User = {
-  name: "Thomas Coffey",
-  friends: [],
-  status: true,
-  workouts: [],
-  pfp: "@/assets/ProfilePictures/Patrick-PNG-File.png",
-};
 
 export interface User {
   id?: number;
@@ -69,7 +40,8 @@ export function useSession() {
 
 export function api(url: string, data?: any, method?: string, headers?: any) {
   session.isLoading = true;
-  console.log(session.user)
+  //for some reason my session.user?.token is undefined
+  console.log(session.user?.token)
   if(session.user?.token){
       headers = {
           "Authorization": `Bearer ${session.user.token}`,
@@ -90,33 +62,27 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
       })
 }
 
-export async function login(user: string, password: string) {
+export function login(user: string, password: string) {
   const router = useRouter();
-  console.log({user, password})
-      try {
-          const response = await api('users/login', {
-            
-              "email": user,
-              "password": password
-          })
-
-           
-
-          session.user = response.data.user;
-          console.log(session.user)
-          
-          if(!session.user) {
-              addMessage("User not found", "danger");
-              return;
-          }
-          session.user.token = response.data.token;
-
-          router.push(session.redirectUrl ?? "/");
-          session.redirectUrl = null;
-      } catch (error) {
-          console.error(error);
-          return null;
+  console.log(useRouter());
+  
+  return async function() {
+      const response = await api("users/login", {
+          "email": user,
+          "password": password
+      });
+      console.log({response});
+      session.user = response.data.user;
+      if(!session.user) {
+          addMessage("User not found", "danger");
+          return;
       }
+      session.user.token = response.data.token;
+      console.log(session.user.token)
+
+      router.push(session.redirectUrl ?? "/about");
+      session.redirectUrl = null;
+  }
 }
 
 

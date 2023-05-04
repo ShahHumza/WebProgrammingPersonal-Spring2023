@@ -74,11 +74,11 @@ POST http://localhost:3000/api/v1/workouts/seed
 POST http://localhost:3000/api/v1/users/seed
 
 ###
-GET http://localhost:3000/api/v1/users/totalWorkouts/H@101
-Authorization: Bearer {{login.response.body.data.token}}
+GET http://localhost:3000/api/v1/users/getWorkout/H@101
+Authorization: Bearer {{jwt}}
 
 ###
-POST http://localhost:3000/api/v1/users/addWorkout/H@101
+POST http://localhost:3000/api/v1/users/addWorkouts/H@101
 Content-Type: application/json
 
 {

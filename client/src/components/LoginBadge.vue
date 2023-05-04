@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useSession, login, useLogout } from '@/model/session';
+// import { useRouter } from "vue-router";
+// import * as myFetch from "../model/myFetch";
+
 
 
 const session = useSession();
 const logout = useLogout();
+const useLogin= login("H@101", "123456");
+const useLogin1 = login('john@doe.com','123456')
+const useLogin2 = login('jane@doe.com','123456')
 
 function logout2() {
   logout();
@@ -27,13 +33,13 @@ function logout2() {
         </div>
         <div class="dropdown-menu" id="dropdown-menu" role="menu">
           <div class="dropdown-content">
-            <a href="#" class="dropdown-item" @click="login('H@101', '123456')">
+            <a href="#" class="dropdown-item" @click="useLogin">
               Humza Shah
             </a>
-            <a href="#" class="dropdown-item" @click="login('john@doe.com','123456')">
+            <a href="#" class="dropdown-item" @click="useLogin1">
               Tanner Festa
             </a>
-            <a href="#" class="dropdown-item" @click="login('jane@doe.com','123456')">
+            <a href="#" class="dropdown-item" @click="useLogin2">
               Tom Coffey
             </a>
           </div>
