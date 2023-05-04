@@ -33,7 +33,7 @@ function logout2() {
             <a href="#" class="dropdown-item" @click="login('john@doe.com','123456')">
               Tanner Festa
             </a>
-            <a href="#" class="dropdown-item" @click="login('jane@doe.com','hi')">
+            <a href="#" class="dropdown-item" @click="login('jane@doe.com','123456')">
               Tom Coffey
             </a>
           </div>

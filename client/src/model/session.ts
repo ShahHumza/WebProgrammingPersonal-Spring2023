@@ -62,9 +62,14 @@ export interface User {
   pfp: string;
   
 }
+
+export function useSession() {
+  return session;
+}
+
 export function api(url: string, data?: any, method?: string, headers?: any) {
   session.isLoading = true;
-  console.log(session.user?.token)
+  console.log(session.user)
   if(session.user?.token){
       headers = {
           "Authorization": `Bearer ${session.user.token}`,
@@ -85,42 +90,42 @@ export function api(url: string, data?: any, method?: string, headers?: any) {
       })
 }
 
-export function useSession() {
-  return session;
+export async function login(user: string, password: string) {
+  const router = useRouter();
+  console.log({user, password})
+      try {
+          const response = await api('users/login', {
+            
+              "email": user,
+              "password": password
+          })
+
+           
+
+          session.user = response.data.user;
+          console.log(session.user)
+          
+          if(!session.user) {
+              addMessage("User not found", "danger");
+              return;
+          }
+          session.user.token = response.data.token;
+
+          router.push(session.redirectUrl ?? "/");
+          session.redirectUrl = null;
+      } catch (error) {
+          console.error(error);
+          return null;
+      }
 }
+
+
 
 export function useUser() {
   const username = session.user?.email ??"Unknown User";
   return username;
 }
 
-export async function login(user: string, password: string) {
-  
-  try {
-    const router = useRouter();
-    console.log("user" + user)
-    // console.log(session.user)
-    const response = await api("users/login", {
-      "email": user,
-      "password": "123456"
-  });
-    session.user = response.data.user;
-    console.log(user)
-    console.log(session)
-    console.log(session.user)
-    console.log("hi")
- 
-
-    // router.push(session.redirectUrl ?? "/");
-    // session.redirectUrl = null;
-  } catch (error) {
-    console.error(error);
-    console.log("Error in session.ts")
-    // addMessage("User not found", "danger");
-    return;
-  }
-
-}
 
 
 
@@ -160,4 +165,6 @@ export function getWorkouts(): User["workouts"] {
 export function isLoggedIn() {
   return session.user !== null;
 }
+
+
 
