@@ -49,6 +49,8 @@ DELETE http://localhost:{{port}}/api/v1/workouts/1
 ###
 GET http://localhost:{{port}}/api/v1/products/search/bridge
 
+
+
 ###
 # @name login
 POST http://localhost:{{port}}/api/v1/users/login
@@ -72,4 +74,14 @@ POST http://localhost:3000/api/v1/workouts/seed
 POST http://localhost:3000/api/v1/users/seed
 
 ###
-GET http://localhost:3000/api/v1/users
+GET http://localhost:3000/api/v1/users/getWorkouts/john@doe.com
+
+###
+POST http://localhost:3000/api/v1/users/addWorkout/H@101
+Content-Type: application/json
+
+{
+    "date": "2021-01-01",
+    "duration": "10",
+    "name": "benching"
+}

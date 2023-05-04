@@ -1,0 +1,46 @@
+[
+    {
+        "name": "John Doe",
+        "email": "john@doe.com",
+        "password": "123456",
+        "photo": "https://robohash.org/hicveldicta.png?size=50x50&set=set1",
+        "role": "admin",
+        "workouts": [
+            {
+                "date": "2021-01-01",
+                "duration": "10",
+                "name": "Workout 1"
+            }
+        ]
+        
+    },
+    {
+        "name": "Jane Doe",
+        "email": "jane@doe.com",
+        "password": "123456",
+        "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
+        "role": "user",
+        "workouts": [
+        
+            {
+                "date": "2021-01-01",
+                "duration": "10",
+                "name": "Running"
+            }
+        ]
+    },
+    {
+        "name": "Humza Shah",
+        "email": "H@101",
+        "password": "123456",
+        "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
+        "role": "admin",
+        "workouts": [
+            {
+                "date": "2021-01-01",
+                "duration": "10",
+                "name": "Benching"
+            }
+        ]
+    }
+]

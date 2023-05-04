@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
   import { useSession, useUser} from '@/model/session';
-  import { deleteWorkout, type Workout } from "@/model/workouts";
+  import type { Workout } from "@/model/workouts";
   import { addWorkouts, getWorkouts } from "@/model/workouts";
 
   const session = useSession();
@@ -10,6 +10,7 @@
 
   const user = session.user;
   const username = user?.name
+  console.log(username)
   const userId = useUser()
 
   async function addToWorkouts(name: string, duration: number) {
@@ -17,10 +18,10 @@
   await getUserWorkouts()
 }
 
-  async function removeWorkout(name: string, duration: number) {
-    await deleteWorkout(userId, name, duration);
-    await getUserWorkouts()
-  }
+  // async function removeWorkout(name: string, duration: number) {
+  //   await deleteWorkout(userId, name, duration);
+  //   await getUserWorkouts()
+  // }
 
   async function getUserWorkouts() {
     getWorkouts(username || '').then((data) => {
@@ -104,7 +105,7 @@
       <ul>
         <li v-for="(workout, index) in workouts" :key="workout.id">
           <div class="notification is-primary">
-            <button class="delete" @click=" removeWorkout(workout.name, workout.duration)"></button>
+            <button class="delete" @click=" "></button>
             {{ workout.name }} - {{ workout.duration }}
           </div>
         </li>

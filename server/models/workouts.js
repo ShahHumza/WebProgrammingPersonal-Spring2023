@@ -1,10 +1,10 @@
 const fs = require("fs");
-const data = require('../data/workouts.json');
+const data = require('../data/user.json');
 const { connect, ObjectId, DB_Name } = require('./mongo');
 
 const path = require('path');
 
-const COL_ALLWORKOUTS = 'allWorkouts';
+const COL_ALLWORKOUTS = 'users';
 
 // function getWorkouts(username) {
 //   // console.log(username)
@@ -39,7 +39,7 @@ async function insert(colName, dbScraped) {
 
 async function get() {
   //await insertWorkouts("allWorkouts", allWorkoutsDataScraped); // Insert some documents into the collection
-  const col = await collection('allWorkouts');
+  const col = await collection('users');
   //console.log(col);
   const count = await col.countDocuments();
   //console.log(`Number of documents in collection: ${count}`);
@@ -48,7 +48,7 @@ async function get() {
 }
 
 async function getByUser(username, page=1, pageSize=30) {
-  const col = await collection('allWorkouts');
+  const col = await collection('users');
   // console.log(col);
   const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
   for(item in items){
@@ -74,7 +74,7 @@ async function getByUser(username, page=1, pageSize=30) {
 //   return null;
 // }
 async function getById(id) {
-  const col = await collection('allWorkouts');
+  const col = await collection('users');
   const items = await col.find().toArray();
   for(item in items){
     //console.log(item);
@@ -87,7 +87,7 @@ async function getById(id) {
 }
 
 async function add(workout, page=1, pageSize=30) {
-  const col = await collection('allWorkouts');
+  const col = await collection('users');
   const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
   // //const newWorkout = { username: user, name: name, duration: duration }
   // const username = workout.username;
@@ -122,7 +122,7 @@ async function add(workout, page=1, pageSize=30) {
 //   }
 // }
 async function update(workout) {
-  const col = await collection('allWorkouts');
+  const col = await collection('users');
   const result = await col.findOneAndUpdate(
     { _id: ObjectId(workout.id) },
     { $set: workout },
@@ -131,7 +131,7 @@ async function update(workout) {
 }
 
 async function deleteItem(workout, page=1, pageSize=30) {
-  const col = await collection('allWorkouts');
+  const col = await collection('users');
   const items = await col.find().skip((page-1) * pageSize).limit(pageSize).toArray();
   
   const username = workout.username;

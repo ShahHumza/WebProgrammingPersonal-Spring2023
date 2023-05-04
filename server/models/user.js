@@ -1,45 +1,54 @@
-//const data = require('../data/workouts.json');
+const data = require('../data/user.json');
 const jwt = require('jsonwebtoken');
 const { connect, ObjectId } = require('./mongo');
 const { env } = require('process');
 
-const COLLECTION_NAME = 'allWorkouts';
+const COLLECTION_NAME = 'users';
 
-const data = [
-    {
-        "name": "John Doe",
-        "email": "john@doe.com",
-        "password": "123456",
-        "photo": "https://robohash.org/hicveldicta.png?size=50x50&set=set1",
-        "role": "admin",
-        "workouts": [
-            {
-                "name": "Workout 1",
-                "duration": "10",
+// const data = [
+//     {
+//         "name": "John Doe",
+//         "email": "john@doe.com",
+//         "password": "123456",
+//         "photo": "https://robohash.org/hicveldicta.png?size=50x50&set=set1",
+//         "role": "admin",
+//         "workouts": [
+//             {
+//                 "name": "Workout 1",
+//                 "duration": "10",
 
-            }
-        ]
-    },
-    {
-        "name": "Jane Doe",
-        "email": "jane@doe.com",
-        "password": "123456",
-        "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
-        "role": "user",
-    },
-    {
-        "name": "Humza Shah",
-        "email": "H@101",
-        "password": "123456",
-        "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
-        "role": "admin",
-    },
-]
+//             }
+//         ]
+//     },
+//     {
+//         "name": "Jane Doe",
+//         "email": "jane@doe.com",
+//         "password": "123456",
+//         "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
+//         "role": "user",
+//     },
+//     {
+//         "name": "Humza Shah",
+//         "email": "H@101",
+//         "password": "123456",
+//         "photo": "https://robohash.org/autemquidemvoluptatem.png?size=50x50&set=set1",
+//         "role": "admin",
+//     },
+// ]
 
 async function collection() {
     const db = await connect();
     return db.collection(COLLECTION_NAME);
 }
+
+async function get(email) {
+    const col = await collection('users');
+    const user = await col.findOne({ email: email });
+    if (!user) {
+      return null;
+    }
+    return user.workouts;
+  }
 
 async function getAll(page = 1, pageSize = 30) {
     const col = await collection();
@@ -62,6 +71,12 @@ async function add(item) {
     item._id = result.insertedId;
     return item;
 }
+
+async function addWorkout(email, workoutData) {
+    const col = await collection('users');
+    const result = await col.updateOne({ email: email }, { $push: { workouts: workoutData } });
+    return result.modifiedCount > 0;
+  }
 
 async function update(item) {
 
@@ -152,9 +167,11 @@ function verifyTokenAsync(token) {
 }
 
 module.exports = {
+    get,
     getAll,
     getById,
     add,
+    addWorkout,
     update,
     deleteItem,
     search,
