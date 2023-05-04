@@ -130,6 +130,9 @@
     display: flex;
     text-align: right;
     margin-top: -350px;
+    z-index: 0;
+    
+    
 
     /* This alligns it */
     position: relative;

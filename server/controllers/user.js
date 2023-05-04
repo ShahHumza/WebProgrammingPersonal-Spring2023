@@ -13,7 +13,7 @@ router
     })
 
     //get Workouts
-    .get("/getWorkouts/:email", (req, res, next) => {
+    .get("/getWorkouts/:email", requireLogin(true), (req, res, next) => {
         const email = req.params.email;
         model.get(email)
           .then(workouts => {
@@ -57,7 +57,7 @@ router
     })
 
     //add Workouts
-    .post('/addWorkout/:email', (req, res, next) => {
+    .post('/addWorkout/:email', requireLogin(true), (req, res, next) => {
         const { email } = req.params;
         const workoutData = req.body;
           
@@ -69,7 +69,7 @@ router
           .catch(next);
       })
     //delete Workouts
-    .post('/deleteWorkout/:email', (req, res, next) => {
+    .post('/deleteWorkout/:email', requireLogin(true), (req, res, next) => {
         const { email } = req.params;
         const workoutName = req.body.name;
         

@@ -63,4 +63,8 @@
 
 
 <style scoped>
+.section{
+    z-index: 1;
+    position: relative;
+}
 </style>
