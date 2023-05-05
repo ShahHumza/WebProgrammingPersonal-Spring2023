@@ -6,7 +6,7 @@ const users = require('./controllers/user')
 const { requireLogin, parseAuthorizationHeader } = require('./middleware/authorization')
 
 const app = express();
-const hostname = '127.0.0.1';
+const hostname = 'http://humtracker.onrender.com';
 const port = process.env.PORT || 3000;
 
 
