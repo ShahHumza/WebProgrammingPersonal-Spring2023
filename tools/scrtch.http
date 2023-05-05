@@ -65,7 +65,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/v1/users/
 
 ###
-GET http://localhost:3000/api/v1/users/Humza Shah
+GET http://localhost:3000/api/v1/users/getWorkout/Humza Shah
 
 ###
 POST http://localhost:3000/api/v1/workouts/seed
@@ -74,11 +74,10 @@ POST http://localhost:3000/api/v1/workouts/seed
 POST http://localhost:3000/api/v1/users/seed
 
 ###
-GET http://localhost:3000/api/v1/users/getWorkout/H@101
-Authorization: Bearer {{jwt}}
+GET http://localhost:3000/api/v1/users/getWorkouts/H@101
 
 ###
-POST http://localhost:3000/api/v1/users/addWorkouts/H@101
+POST http://localhost:{{port}}/api/v1/users/addWorkout/H@101
 Content-Type: application/json
 
 {
@@ -92,7 +91,7 @@ POST http://localhost:3000/api/v1/users/deleteWorkout/H@101
 Content-Type: application/json
 
 {
-    "date": "2022-02-02",
-    "duration": "0",
-    "name": "wd"
+    "date": "2021-01-01",
+    "duration": "10",
+    "name": "benching"
 }

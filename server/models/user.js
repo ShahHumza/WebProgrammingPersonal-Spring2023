@@ -42,24 +42,24 @@ async function collection() {
 }
 
 async function get(email) {
-    const col = await collection('users');
+    const col = await collection();
     const user = await col.findOne({ email: email });
-    console.log(user.workouts.length)//amount of workouts
+    // console.log(user.workouts.length)//amount of workouts
     if (!user) {
       return null;
     }
     return user.workouts;
   }
 
-async function count(email) {
-    const col = await collection('users');
-    const user = await col.findOne({ email: email });
-    // console.log(user.workouts.length)//amount of workouts
-    if (!user) {
-      return null;
-    }
-    return user.workouts.length;
-}
+// async function count(email) {
+//     const col = await collection('users');
+//     const user = await col.findOne({ email: email });
+//     // console.log(user.workouts.length)//amount of workouts
+//     if (!user) {
+//       return null;
+//     }
+//     return user.workouts.length;
+// }
 
 async function getAll(page = 1, pageSize = 30) {
     const col = await collection();
@@ -84,13 +84,13 @@ async function add(item) {
 }
 
 async function addWorkout(email, workoutData) {
-    const col = await collection('users');
+    const col = await collection();
     const result = await col.updateOne({ email: email }, { $push: { workouts: workoutData } });
     return result.modifiedCount > 0;
   }
 
   async function deleteWorkout(email, workoutName) {
-    const col = await collection('users');
+    const col = await collection();
     const result = await col.updateOne({ email: email }, { $pull: { workouts: { name: workoutName } } });
     return result.modifiedCount > 0;
 }
@@ -188,7 +188,6 @@ module.exports = {
     get,
     getAll,
     getById,
-    count,
     add,
     addWorkout,
     update,
