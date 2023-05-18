@@ -35,3 +35,8 @@ export function countWorkout(user: string){
   return api('users/totalWorkouts/' + user)
 }
 
+export function getAllUsers() : Promise<DataListEnvelope<String>> {
+  return api('users/getAllNames')
+}
+
+

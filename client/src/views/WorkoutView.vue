@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { useSession, useUser } from '@/model/session';
+import { onMounted, ref, watchEffect } from 'vue';
+import { useSession, useUser, type User } from '@/model/session';
 import { type Workout, deleteWorkout } from "@/model/workouts";
-import { addWorkouts, getWorkouts } from "@/model/workouts";
+import { addWorkouts, getWorkouts, getAllUsers } from "@/model/workouts";
+import AutoComplete from 'primevue/autocomplete';
+// import { type User } from "@/model/session";
 
 const session = useSession();
 const newWorkout = ref({ date: '', duration: 0, name: '' });
@@ -30,11 +32,39 @@ async function getUserWorkouts() {
     // data.data.push({ name, duration });
   });
 }
-
+// async function searc() {
+//   const usernames = await getAllUsers().then((data) => {
+//     return data.data;
+//   });
+//   console.log(usernames)
+// }
 
 onMounted(async () => {
   getUserWorkouts(); ""
+  
 })
+
+
+const usernames = ref([] as String[])
+async function search(){
+  usernames.value = await getAllUsers().then((data) => {
+    return data.data;
+  });
+}
+
+const suggestions = ref([]);
+const items = ref([] as String[])
+async function updateSuggestions() {
+      const usernames = await getAllUsers().then((data) => data.data);
+      items.value = usernames;
+      console.log(items.value)
+    }
+
+    updateSuggestions();
+   
+
+const searchTerm = ref('');
+
 
 </script>
 
@@ -75,6 +105,18 @@ onMounted(async () => {
             <textarea class="textarea" placeholder="e.g. Felt great today"></textarea>
           </div>
         </div>
+        <!-- adding friend final
+        <div class="field">
+          <label class="label">AddFriend</label>
+          <div class="control">
+            <input type="text" id="search" placeholder="Type here...">
+          </div>
+        </div> -->
+        <div class="field">
+          <label class="label">Tag friend</label>
+          <AutoComplete v-model="searchTerm" :suggestions="items" @complete="search" />
+        </div>
+        
         <div class="field">
           <div>
             <button type="button" class="button is-primary"
@@ -126,8 +168,7 @@ onMounted(async () => {
     transition: .3s ease;
 
 
-    
+
   }
 }
-
 </style>

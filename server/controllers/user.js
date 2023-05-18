@@ -12,6 +12,14 @@ router
             }).catch(next);
     })
 
+    .get('/getAllNames', (req, res, next) => {
+        model.getAllNames()
+            .then(list => {
+                const data = { data: list, isSuccess: true };
+                res.send(data)
+            }).catch(next);
+    })
+
     //get Workouts
     .get("/getWorkouts/:email", (req, res, next) => {
         const email = req.params.email;
@@ -130,6 +138,8 @@ router
                 res.send(data)
             }).catch(next);
     })
+
+    
 
     .post('/oAuthLogin', (req, res, next) => {
         model.oAuthLogin(req.body.provider, req.body.accessToken)

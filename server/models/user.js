@@ -68,6 +68,12 @@ async function getAll(page = 1, pageSize = 30) {
     return { items, total };
 }
 
+async function getAllNames() {
+    const col = await collection();
+    const items = await col.find().project({ name: 1, _id: 0 }).toArray();
+    return items;
+}
+
 async function getById(id) {
     const col = await collection();
     const item = await col.findOne({ _id: new ObjectId(id) });
@@ -199,4 +205,5 @@ module.exports = {
     oAuthLogin,
     generateTokenAsync,
     verifyTokenAsync,
+    getAllNames,
 };
